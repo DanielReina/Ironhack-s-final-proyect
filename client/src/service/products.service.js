@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class productService {
+class ProductService {
 
     constructor() {
         this.apiHandler = axios.create({
@@ -9,6 +9,7 @@ class productService {
     }
 
     getProducts = () => this.apiHandler.get('/')
+    saveProduct = ProductsInfo => this.apiHandler.post(`/newProduct/`, ProductsInfo)
 }
 
-export default productService
+export default ProductService

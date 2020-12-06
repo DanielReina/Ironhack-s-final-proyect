@@ -9,8 +9,7 @@ const productSchema = new Schema({
         set: text => text.charAt(0).toUpperCase() + text.substring(1) 
     },
     description: {
-        type: String,
-        required: true,
+        type: String,       
         default: 'Desconocido',
     },
     mainImage: String,
@@ -19,14 +18,14 @@ const productSchema = new Schema({
     shopImages: [String],
     category: {
         type: String,
-        enum: ['Relojes', 'Joyas', 'Arte'],
+        enum: ['Relojes', 'Joyas', 'Arte', 'Otros'],
        
     },
-    // cutOffTime: {
-    //     type: String
+    cutOffTime: {
+        type: Date
 
-    // },
-    InitialPrice: {
+    },
+    initialPrice: {
         type: Number,
         default: 0,
     },
