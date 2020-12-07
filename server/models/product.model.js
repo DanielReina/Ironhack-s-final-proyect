@@ -21,7 +21,7 @@ const productSchema = new Schema({
         enum: ['Relojes', 'Joyas', 'Arte', 'Otros'],
        
     },
-    cutOffTime: {
+    timeLimit: {
         type: Date
 
     },
