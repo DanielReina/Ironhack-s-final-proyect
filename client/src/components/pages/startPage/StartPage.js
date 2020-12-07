@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Navigation from './../../layout/navigation/navigation'
+
 
 
 class StartPage extends Component {
@@ -17,12 +17,8 @@ class StartPage extends Component {
     showModal = () => this.setState({showModal: true})
     render(){
         return(
-            // <Container fluid className="home-page">
-              <Row>
-              <Col xs={1}>
-                   <Navigation/>
-              </Col>
-              <Col  xs={11}>
+            <Container fluid className="home-page">
+            
                 <Row>
                     <Col  md={{ span:6 }}>
                         <div>
@@ -48,7 +44,7 @@ class StartPage extends Component {
                 <Row>
                     <Col  md={{span:6}}>
                         <div>
-                            <Link to='#'>Iniciar sesión</Link>
+                            <Link to='/iniciar-sesion'>Iniciar sesión</Link>
                         </div>            
                     </Col>
                     <Col  md={{span:6}}>           
@@ -61,14 +57,12 @@ class StartPage extends Component {
                     <Col  md={{span:12}}>
                         <div>
                             <Link to='/nuevo-producto'>Nuevo producto</Link>
-                            <Button variant='dark' size='sm' onClick={this.showModal}>Crear un nuevo producto</Button>
+                           
                         </div>            
                     </Col>
-                </Row>
-                </Col>
-             </Row>
+                </Row>        
            
-            // </Container>
+            </Container>
             )
     }
 }

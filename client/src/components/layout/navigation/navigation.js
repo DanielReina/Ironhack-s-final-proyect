@@ -31,7 +31,7 @@ class Navigation extends Component {
                 <Nav.Link eventKey="#">Mi perfil</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="#">Iniciar sesión</Nav.Link>
+                <Nav.Link href="/iniciar-sesion">Iniciar sesión</Nav.Link>
             </Nav.Item>
         </Nav>
 

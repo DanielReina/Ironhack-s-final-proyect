@@ -1,26 +1,24 @@
 import { Col, Card, ListGroupItem, ListGroup } from 'react-bootstrap'
 import React, { Component } from 'react'
-
-
-
 class ProductCard extends Component { 
-
     constructor() {
         super()
         this.state = {
-            days:'',
-            hours: '',
-            miutes: '',
-            seconds: ''
-
+            date:""
         }
         this.days=''
         this.hours=''
         this.minutes=''
-        this.seconds=''           
-    
+        this.seconds = ''           
     }
-
+    componentDidMount() { 
+        this.dateInterval= setInterval(() => {
+            this.setState({date:this.getTime()})
+        }, 1000) 
+    }
+    componentWillUnmount() {
+        clearInterval(this.dateInterval)
+    }
     wrongDateFormat(string){
         let year= string.substring(0, 4)
         let day= string.substring(8, 10)
@@ -69,11 +67,8 @@ class ProductCard extends Component {
           let hourToNumber= parseInt(soloHoraMenosUno, 10) + 1;
           let correctStringNumber = hourToNumber.toString()
           let hour = `${correctStringNumber}`+`${string.substring(13, 19)}`
-        
        return (`${month} ${day}, ${year} ${hour}`)
         }
-
-    
     getTime(){
         let dateTo =this.wrongDateFormat(`${this.props.timeLimit}`)
         let now = new Date(),
@@ -82,38 +77,14 @@ class ProductCard extends Component {
             minutes = ('0' + Math.floor(time / 60 % 60)).slice(-2),
             hours = ('0' + Math.floor(time / 3600 % 24)).slice(-2),
             days = Math.floor(time / (3600 * 24));  
-
-            // this.setState({
-            //     days,
-            //     hours,
-            //     minutes,
-            //     seconds
-            // })
-
         if( Math.sign(seconds) ===-1 || Math.sign(minutes) ===-1 || Math.sign(hours) ===-1){
             return (`Dejó de estar a la venta en ${dateTo}`)
         }else{
-     
-
         return (`${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`)
-
         // return (`${this.state.days} dias, ${this.state.hours} horas, ${this.state.minutes} minutos, ${this.state.seconds} segundos`)
         }   
     }
-
-
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     // Uso tipico (no olvides de comparar las props):
-    //     if (this.seconds) {
-    //       this.fetchData(this.props.userID);
-    //     }
-    //   }
-
-
     render() {
-       
-
     return (
         <Col lg={4}>
             <Card className="product-card">
@@ -123,21 +94,16 @@ class ProductCard extends Component {
                     <Card.Text>
                     {this.props.description}
                     </Card.Text>
-                                          
                 </Card.Body>
-              
                     <ListGroup className="list-group-flush">
                         <ListGroupItem>Id del producto: {this.props._id}</ListGroupItem>
                         <ListGroupItem>Categoría de venta: {this.props.category} </ListGroupItem>
                         <ListGroupItem>Precio incial del producto: {this.props.initialPrice} </ListGroupItem>
-                        <ListGroupItem>Finaliza en: {this.getTime()}</ListGroupItem>
-
+                        <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>
                     </ListGroup>
-                  
             </Card>
         </Col>
     )
     }
 }
-
 export default ProductCard

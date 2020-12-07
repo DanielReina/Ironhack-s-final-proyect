@@ -9,7 +9,7 @@ class ProductService {
     }
 
     getProducts = () => this.apiHandler.get('/')
-    saveProduct = ProductsInfo => this.apiHandler.post(`/newProduct/`, ProductsInfo)
+    saveProduct = ProductsInfo => this.apiHandler.post(`/newProduct`, ProductsInfo)
 }
 
 export default ProductService

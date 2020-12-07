@@ -13,7 +13,7 @@ class ProductForm extends Component {
             category: '',
             initialPrice: '',
             mainImage: '',
-            cutOffTime: '',
+            timeLimit: '',
             detailsImages: '',          
         }
         this.productService = new ProductService()
@@ -38,7 +38,7 @@ class ProductForm extends Component {
         return (
             <>
                 <h1>Nuevo producto</h1>
-                <hr />
+                <hr/>
 
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="title">
@@ -59,9 +59,9 @@ class ProductForm extends Component {
                         </Form.Control>
                     </Form.Group>
 
-                    <Form.Group controlId="cutOffTime">
+                    <Form.Group controlId="timeLimit">
                         <Form.Label>Fecha límite de puja</Form.Label>
-                        <Form.Control type="datetime-local" name="cutOffTime" value={this.state.timeLimit} onChange={this.handleInputChange} />
+                        <Form.Control type="datetime-local" name="timeLimit" value={this.state.timeLimit} onChange={this.handleInputChange} />
                     </Form.Group>
 
                     <Form.Group controlId="initialPrice">

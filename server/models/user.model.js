@@ -13,7 +13,7 @@ const userSchema = new Schema({
     },
     name: {
         type: String,
-        required: true,
+        // required: true,
         default: 'Desconocido',
         set: text => text.charAt(0).toUpperCase()+ text.substring(1)
     },
@@ -25,7 +25,7 @@ const userSchema = new Schema({
     avatar: String,
     email: {
         type: String,
-        required: true,
+        // required: true,
         unique: true, 
         match:/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/ 
     },
