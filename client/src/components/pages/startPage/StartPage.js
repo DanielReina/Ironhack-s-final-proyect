@@ -17,7 +17,7 @@ class StartPage extends Component {
     showModal = () => this.setState({showModal: true})
     render(){
         return(
-            <Container className="home-page">
+            // <Container fluid className="home-page">
               <Row>
               <Col xs={1}>
                    <Navigation/>
@@ -68,7 +68,8 @@ class StartPage extends Component {
                 </Col>
              </Row>
            
-            </Container>)
+            // </Container>
+            )
     }
 }
 export default StartPage

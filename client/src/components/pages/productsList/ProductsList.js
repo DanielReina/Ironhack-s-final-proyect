@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ProductService from './../../../service/products.service'
 
 import { Container, Row, Col } from 'react-bootstrap'
+import ProductCard from './ProductCard'
 
 class ProductsList extends Component {
 
@@ -26,7 +27,7 @@ class ProductsList extends Component {
         <Container>
             <h1>Listado de productos</h1>
                 <Row>           
-                    {this.state.products.map(elm =>  <Col>{elm.title}</Col>)}           
+                    {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
                 </Row>
         </Container>)
     }

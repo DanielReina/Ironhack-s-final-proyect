@@ -18,7 +18,7 @@ class HeaderNavbar extends Component {
         return (
 
             <Navbar bg="dark" expand="lg" variant="dark">
-            <Navbar.Brand href="/">  <img
+            <Navbar.Brand href="/" className="ml-auto">  <img
                             alt="Logotipo"
                             src={logo}
                             width="30"

@@ -27,6 +27,7 @@ render() {
         <Route path="/" exact render={() => <Home/>} />
         <Route path="/inicio"  render={() => <StartPage/>} />
         <Route path="/nuevo-producto"  render={() => <ProductForm/>} />
+        <Route path="/lista-de-productos"  render={() => <ProductsList/>} />
 
       {/* <ProductsList/> */}
       </Switch>

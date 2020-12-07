@@ -61,7 +61,7 @@ class ProductForm extends Component {
 
                     <Form.Group controlId="cutOffTime">
                         <Form.Label>Fecha límite de puja</Form.Label>
-                        <Form.Control type="datetime-local" name="cutOffTime" value={this.state.cutOffTime} onChange={this.handleInputChange} />
+                        <Form.Control type="datetime-local" name="cutOffTime" value={this.state.timeLimit} onChange={this.handleInputChange} />
                     </Form.Group>
 
                     <Form.Group controlId="initialPrice">
