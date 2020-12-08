@@ -49,7 +49,7 @@ class StartPage extends Component {
                     </Col>
                     <Col  md={{span:6}}>           
                         <div>
-                            <Link to='#'>Mi perfil</Link>
+                            <Link to='/perfil'>Mi perfil</Link>
                         </div>
                     </Col>
                 </Row>

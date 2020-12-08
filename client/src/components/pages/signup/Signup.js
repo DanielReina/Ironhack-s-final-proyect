@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from './../../../service/auth.service'
+import {Redirect } from 'react-router-dom'
 
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
@@ -8,11 +9,11 @@ class Signup extends Component {
     constructor() {
         super()
         this.state = {
-            username: '',
-            password: '',
-            name: '',
-            lastName: '',
-            email: '',
+            username:'',
+            password:'',
+            name:'',
+            lastName:'',
+            email:'',
         }
         this.authService = new AuthService()
 
@@ -22,14 +23,15 @@ class Signup extends Component {
 
     handleSubmit = e => {
 
+     
+
         e.preventDefault()
 
         this.authService
             .signup(this.state)
             .then(theLoggedInUser => {
                 this.props.storeUser(theLoggedInUser.data)
-                this.props.history.push('/montañas')        // redirección JS
-            })
+                this.props.history.push('/inicio')})
             .catch(err => console.log(err))
     }
 

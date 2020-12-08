@@ -22,9 +22,10 @@ class Login extends Component {
         this.authService
             .login(this.state)
             .then(theLoggedInUser => {
+                console.log(theLoggedInUser)
                 this.props.storeUser(theLoggedInUser.data)
-                this.props.history.push('/montañas')        // redirección JS
-            })
+                this.props.history.push('/inicio'
+                )})       
             .catch(err => console.log({ err }))
     }
 

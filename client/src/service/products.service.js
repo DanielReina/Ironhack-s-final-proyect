@@ -4,7 +4,8 @@ class ProductService {
 
     constructor() {
         this.apiHandler = axios.create({
-            baseURL: 'http://localhost:5000/api/products'
+            baseURL: 'http://localhost:5000/api/products',
+            withCredentials: true
         })
     }
 

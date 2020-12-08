@@ -22,12 +22,14 @@ const userSchema = new Schema({
         default: 'Desconocido',
         set: text => text.charAt(0).toUpperCase()+ text.substring(1)      
     },
-    avatar: String,
+    avatar:{
+        type: String
+    },
     email: {
         type: String,
         // required: true,
-        unique: true, 
-        match:/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/ 
+        // unique: true, 
+        // match:/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/ 
     },
     role: {
         type: String,

@@ -1,38 +1,60 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Button, Form, FormControl, NavDropdown } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Nav} from 'react-bootstrap'
+
+import AuthService from '../../../service/auth.service'
 
 
 
 class Navigation extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        
+        super(props)
         this.state ={
-
         }
+        this.authService = new AuthService()
     }
 
-    render() {
+logOut = () => {
+    this.authService
+        .logout()
+        .then(res => this.props.storeUser(undefined))
+        .catch(err => console.log(err))
+}
 
+    render() {
+console.log('hola', this.props.loggedUser)
         return (
 
         <Nav className='mr-auto' >                        
             <Nav.Item>
                 <Nav.Link href="/inicio">Inicio</Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="#">Subastas</Nav.Link>
+            <Nav.Item>           
+                <Nav.Link href="#">Subastas</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="#">Venta directa</Nav.Link>
+                <Nav.Link href="#">Venta directa</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="#">Mi perfil</Nav.Link>
+            {this.props.loggedInUser ? 
+                <Nav.Link href="/perfil">Mi perfil</Nav.Link> : <Nav.Link href="/perfil">Mi perfil</Nav.Link>  }
             </Nav.Item>
-            <Nav.Item>
+            {
+                this.props.loggedUser ? 
+                <Nav.Link as='div' onClick={this.logOut} >Cerrar sesión</Nav.Link> :
+              <>  
+                <Nav.Item>
+                
                 <Nav.Link href="/iniciar-sesion">Iniciar sesión</Nav.Link>
-            </Nav.Item>
+                    
+                </Nav.Item>
+                </>
+
+            }
+           
+          
+            
         </Nav>
 
 
