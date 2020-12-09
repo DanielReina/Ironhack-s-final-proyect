@@ -1,8 +1,8 @@
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row} from 'react-bootstrap'
 import ProductService from './../../../../service/products.service'
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import ProductCard from './../../productsList/ProductCard'
+
+import MyProductCard from './MyProductCard'
 
 class MyProducts extends Component {    
      
@@ -12,24 +12,44 @@ class MyProducts extends Component {
         myProducts: []
     }
     this.productService = new ProductService()
-    console.log(this.productService)
+    // this.userId = this.props.loggedUser._id
 }
+
 
 componentDidMount = () => {
+  
+  if(this.props.loggedUser != undefined){
+  const userId = this.props.loggedUser._id
+  console.log('soy el componente componentDidMount')
   this.productService
       .getMyProducts(this.props.loggedUser._id)
-      .then(res => this.setState({myProducts: res.data}))
-      .catch(err => console.log(err))
+      .then(res => this.setState({ myProducts: res.data }))
+      .catch(err => console.log(err))}
 }
 
-  // getMyProducts
+
+componentDidUpdate(prevProps) {
+  if (!prevProps.loggedUser && this.props.loggedUser) 
+  {this.productService
+    .getMyProducts(this.props.loggedUser._id)
+    .then(res => {
+      console.log('soy el componentDidUpdate funcionando')
+      this.setState({myProducts: res.data})
+  })
+    .catch(err => console.log(err))
+}}
+componentWillUnmount() {
+  console.log('soy el componente componentWillUnmount y esto se desmonta')
+}
+
+
     render(){
-       
+       console.log('soy el render', this.props.loggedUser)
     return (
       <Container>
       <h1>Listado de productos</h1>
           <Row>           
-              {this.state.myProducts.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
+              {this.state.myProducts.map(elm => <MyProductCard key={elm._id} {...elm}/>)}           
           </Row>
   </Container>
     )

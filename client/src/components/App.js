@@ -16,9 +16,9 @@ import AuthServices from '../service/auth.service'
 import Profile from './pages/profile/Profile'
 import ProductsList from './pages/productsList/ProductsList'
 import MyInfo from './pages/profile/myinfo/myInfo'
-import EditProducts from './pages/profile/productForm/editproduct'
 import EditProfile from './pages/profile/EditProfile'
 import MyProducts from './pages/profile/myproducts/MyProducts'
+import EditMyProduct from './pages/profile/myproducts/EditMyProduct'
 
 class App extends Component {
 
@@ -60,6 +60,8 @@ render() {
               <Route path="/mis-datos"  render={elm =><MyInfo key={elm._id} {...elm} loggedUser={this.state.loggedInUser} />} />
               <Route path="/editar-mis-datos"  render={props => <EditProfile storeUser={this.setTheUser} {...props} />} />
               <Route path="/mis-productos" exact render={elm => <MyProducts {...elm} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/editar-mi-producto/:product_id"  render={props => <EditMyProduct {...props} />} />
+
 
               {/* <Route path="/editar-producto"  render={props => <EditProducts {...props} />} /> */}
   

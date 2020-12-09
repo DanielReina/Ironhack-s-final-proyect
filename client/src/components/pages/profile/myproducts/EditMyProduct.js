@@ -3,30 +3,44 @@ import ProductService from '../../../../service/products.service'
 
 import { Form, Button } from 'react-bootstrap'
 
-class EditProduct extends Component {
+class EditMyProduct extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            title: '',
+            title: `{MyProduct.title}`,
             description: '',
             category: '',
             initialPrice: '',
             mainImage: '',
             timeLimit: '',
-            detailsImages: ''           
+            detailsImages: '', 
+            salesMethod: '',
+           
         }
         this.productService = new ProductService()
+       
     }
- 
+   
+    Myinfo(){
+       let MyProduct=''
+        this.productService
+        .getProducts()
+        .then(res => MyProduct = res.data.filter(product => product._id = this.props.match.params.product_id))
+        .catch(err => console.log(err))
+
+      
+    }
+  
+
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
 
     handleSubmit = e => {
         e.preventDefault()
-
+        const product_id = this.props.match.params.product_id
         this.productService
-            .editProduct(this.state)
+            .editProduct(product_id, this.state)
             .then(res => {
                 console.log(res)
             })
@@ -35,12 +49,13 @@ class EditProduct extends Component {
 
 
     render() {
-        console.log('aqui andooo yoo', this.state.seller)
+        this.Myinfo()
+   console.log('Mi producto', this.MyProduct)
         return (
             <>
-                <h1>Nuevo producto</h1>
+                <h1>Edita el producto</h1>
                 <hr/>
-
+                   
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="title">
                         <Form.Label>Nombre</Form.Label>
@@ -58,7 +73,15 @@ class EditProduct extends Component {
                         <option>Arte</option>
                         <option>Relojes</option>
                         </Form.Control>
-                    </Form.Group>                
+                    </Form.Group>
+                    <Form.Group controlId="salesMethod">
+                        <Form.Label>Método de venta</Form.Label>
+                        <Form.Control name="salesMethod" as="select" value={this.state.salesMethod} onChange={this.handleInputChange}>
+                        <option>Venta directa</option>
+                        <option>Subasta</option>Crear producto
+                     
+                        </Form.Control>
+                    </Form.Group>
 
                     <Form.Group controlId="timeLimit">
                         <Form.Label>Fecha límite de puja</Form.Label>
@@ -77,11 +100,11 @@ class EditProduct extends Component {
                         <Form.Label>Imágenes extras</Form.Label>
                         <Form.Control type="text" name="detailsImages" value={this.state.detailsImages} onChange={this.handleInputChange} />
                     </Form.Group> */}
-                    <Button variant="dark" type="submit">Editar producto</Button>
+                    <Button variant="dark" type="submit">Guardar edición</Button>
                 </Form>
             </>
         )
     }
 }
 
-export default EditProduct
+export default EditMyProduct

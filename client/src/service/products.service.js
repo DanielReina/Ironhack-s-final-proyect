@@ -10,10 +10,9 @@ class ProductService {
     }
 
     getProducts = () => this.apiHandler.get('/')
-    getMyProducts =userId => this.apiHandler.get(`/productBySeller/${userId}`)
-    getCoaster = coasterId => this.apiHandler.get(`/getOneCoaster/${coasterId}`)
+    getMyProducts =userId => this.apiHandler.get(`/productBySeller/${userId}`)   
     saveProduct = ProductsInfo => this.apiHandler.post(`/newProduct`, ProductsInfo)
-    editProduct = (productId, productInfo) => this.axiosApp.put(`/editProduct/${productId}`, productInfo)
+    editProduct = (productId, productInfo) => this.apiHandler.put(`/editProduct/${productId}`, productInfo)
 }
 
 export default ProductService

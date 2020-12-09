@@ -1,6 +1,6 @@
-import { Col, Card, Button, ButtonGroup } from 'react-bootstrap'
+import { Col} from 'react-bootstrap'
 
-import { Link } from 'react-router-dom'
+
 
 const Myinfo = (props) => {
     console.log('aqui va el nombre', props.loggedUser)

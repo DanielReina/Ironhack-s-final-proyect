@@ -21,7 +21,7 @@ class Profile extends Component {
             <Link to='/editar-mis-datos'>Editar mis datos</Link>
             </Col>
             <hr />
-            <h2>Mi subastas</h2>
+            <h2>Mis subastas</h2>
             <Col>
             <Link to='#'>En puja</Link>
             </Col>
@@ -37,7 +37,7 @@ class Profile extends Component {
             <Link to='nuevo-producto'>Poner nuevo producto en venta</Link>
             </Col>            
             <Col>
-            <Link to='mis-productos'>Mis productos</Link>
+            <Link to='mis-productos'>Mis productos en venta</Link>
             </Col>
             
         </Col>
