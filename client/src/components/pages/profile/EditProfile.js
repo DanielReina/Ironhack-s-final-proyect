@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AuthService from './../../../service/auth.service'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
-class Signup extends Component {
+class EditProfile extends Component {
 
     constructor() {
         super()
@@ -42,7 +42,7 @@ class Signup extends Component {
 
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
-                        <h1>Registro de usuario</h1>
+                        <h1>Editar perfil</h1>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
@@ -66,7 +66,7 @@ class Signup extends Component {
                                 <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
                             </Form.Group>
                             
-                            <Button variant="dark" type="submit">Registrarme</Button>
+                            <Button variant="dark" type="submit">Editar</Button>
                         </Form>
                     </Col>
                 </Row>
@@ -75,4 +75,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup
+export default EditProfile

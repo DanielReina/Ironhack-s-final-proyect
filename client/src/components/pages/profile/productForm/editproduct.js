@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import ProductService from '../../../service/products.service'
+import ProductService from '../../../../service/products.service'
 
 import { Form, Button } from 'react-bootstrap'
 
-class ProductForm extends Component {
+class EditProduct extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             title: '',
             description: '',
@@ -14,10 +14,11 @@ class ProductForm extends Component {
             initialPrice: '',
             mainImage: '',
             timeLimit: '',
-            detailsImages: '',          
+            detailsImages: ''           
         }
         this.productService = new ProductService()
     }
+ 
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
 
@@ -25,7 +26,7 @@ class ProductForm extends Component {
         e.preventDefault()
 
         this.productService
-            .saveProduct(this.state)
+            .editProduct(this.state)
             .then(res => {
                 console.log(res)
             })
@@ -34,7 +35,7 @@ class ProductForm extends Component {
 
 
     render() {
-
+        console.log('aqui andooo yoo', this.state.seller)
         return (
             <>
                 <h1>Nuevo producto</h1>
@@ -57,7 +58,7 @@ class ProductForm extends Component {
                         <option>Arte</option>
                         <option>Relojes</option>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group>                
 
                     <Form.Group controlId="timeLimit">
                         <Form.Label>Fecha límite de puja</Form.Label>
@@ -76,11 +77,11 @@ class ProductForm extends Component {
                         <Form.Label>Imágenes extras</Form.Label>
                         <Form.Control type="text" name="detailsImages" value={this.state.detailsImages} onChange={this.handleInputChange} />
                     </Form.Group> */}
-                    <Button variant="dark" type="submit">Crear producto</Button>
+                    <Button variant="dark" type="submit">Editar producto</Button>
                 </Form>
             </>
         )
     }
 }
 
-export default ProductForm
+export default EditProduct

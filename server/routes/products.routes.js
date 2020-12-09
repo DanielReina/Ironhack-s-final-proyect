@@ -36,6 +36,23 @@ router.post('/newProduct', (req, res) =>{
 
 })
 
+router.put('/editProduct/:product_id', (req, res) => {
+
+    Product
+        .findByIdAndUpdate(req.params.product_id, req.body)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
+router.get('/productBySeller/:user_id', (req, res, next) => {
+    Product
+        .find({"seller": req.params.user_id})
+        .then(response => res.json(response))
+        .catch(err => next(new Error(err)))
+})
+
+
 
 
 

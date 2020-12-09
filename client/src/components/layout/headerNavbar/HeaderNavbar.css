@@ -1,4 +1,9 @@
 #basic-navbar-nav{
     display: flex;
     justify-content: flex-end;
+    
+}
+
+#HNavbar{
+    margin-bottom: 25px;;
 }

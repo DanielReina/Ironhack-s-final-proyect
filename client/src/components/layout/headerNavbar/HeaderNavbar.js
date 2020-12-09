@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, Button, Form, FormControl, NavDropdown } from 'react-bootstrap'
+import { Navbar, Button, Form, FormControl} from 'react-bootstrap'
 import logo from './logoHome.jpg'
 import './HeaderNavbar.css'
 
@@ -17,7 +17,7 @@ class HeaderNavbar extends Component {
 
         return (
 
-            <Navbar bg="dark" expand="lg" variant="dark">
+            <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark">
             <Navbar.Brand href="/" className="ml-auto">  <img
                             alt="Logotipo"
                             src={logo}

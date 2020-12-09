@@ -77,7 +77,7 @@ class ProductCard extends Component {
             minutes = ('0' + Math.floor(time / 60 % 60)).slice(-2),
             hours = ('0' + Math.floor(time / 3600 % 24)).slice(-2),
             days = Math.floor(time / (3600 * 24));  
-        if( Math.sign(seconds) ===-1 || Math.sign(minutes) ===-1 || Math.sign(hours) ===-1){
+        if( Math.sign(seconds) ===-1 || Math.sign(minutes) ===-1 || Math.sign(hours) ===-1 || Math.sign(days) ===-1){
             return (`Dejó de estar a la venta en ${dateTo}`)
         }else{
         return (`${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`)

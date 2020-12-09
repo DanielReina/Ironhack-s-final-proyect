@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ProductService from './../../../service/products.service'
-
-import { Container, Row, Col } from 'react-bootstrap'
+import {Container, Row} from 'react-bootstrap'
 import ProductCard from './ProductCard'
 
 class ProductsList extends Component {

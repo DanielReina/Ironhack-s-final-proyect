@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Nav} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import AuthService from '../../../service/auth.service'
 
@@ -23,7 +24,7 @@ logOut = () => {
 }
 
     render() {
-console.log('hola', this.props.loggedUser)
+console.log('holass', this.props.loggedUser)
         return (
 
         <Nav className='mr-auto' >                        
@@ -36,9 +37,8 @@ console.log('hola', this.props.loggedUser)
             <Nav.Item>
                 <Nav.Link href="#">Venta directa</Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-            {this.props.loggedInUser ? 
-                <Nav.Link href="/perfil">Mi perfil</Nav.Link> : <Nav.Link href="/perfil">Mi perfil</Nav.Link>  }
+            <Nav.Item>          
+            <Link to='/perfil'>Mi perfil</Link>
             </Nav.Item>
             {
                 this.props.loggedUser ? 
