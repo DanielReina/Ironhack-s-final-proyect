@@ -16,16 +16,24 @@ class ProductForm extends Component {
             timeLimit: '',
             detailsImages: '', 
             salesMethod: '',
-            seller:'',
+            seller:props.loggedUser ? props.loggedUser._id : ''
         }
         this.productService = new ProductService()
     }
 
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.loggedUser && this.props.loggedUser) 
-        {this.setState({seller:this.props.loggedUser._id})
-    }}
+        if ((!prevProps.loggedUser && this.props.loggedUser)) 
+        {this.setState({seller:this.props.loggedUser._id})}        
+    }
+
+
+//     componentDidUpdate(){
+//         if(this.props.loggedUser){
+//             {this.setState({seller:this.props.loggedUser._id})
+//         }
+//     }
+// }
       
    
 
@@ -44,7 +52,7 @@ class ProductForm extends Component {
 
 
     render() {
-        console.log('aqui andooo yoo', this.state.seller)
+        console.log('aqui andooo yoo', this.props.loggedUser)
         return (
             <>
                 <h1>Nuevo producto</h1>
@@ -62,6 +70,7 @@ class ProductForm extends Component {
                     <Form.Group controlId="category">
                         <Form.Label>Categoría</Form.Label>
                         <Form.Control name="category" as="select" value={this.state.category} onChange={this.handleInputChange}>
+                        <option></option>
                         <option>Otros</option>
                         <option>Joyas</option>
                         <option>Arte</option>
@@ -71,6 +80,7 @@ class ProductForm extends Component {
                     <Form.Group controlId="salesMethod">
                         <Form.Label>Método de venta</Form.Label>
                         <Form.Control name="salesMethod" as="select" value={this.state.salesMethod} onChange={this.handleInputChange}>
+                        <option></option>
                         <option>Venta directa</option>
                         <option>Subasta</option>
                      

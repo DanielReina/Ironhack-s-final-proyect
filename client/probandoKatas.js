@@ -1,41 +1,48 @@
-function dirReduc(arr){
-  let solucion= ''
-    function filterItems(query) {
-        return  (arr.filter(function(el) {
-             return el.toLowerCase().indexOf(query.toLowerCase()) > -1;
-         }))
-       }
-       let numNoth =filterItems('NORTH')
-       let numSouth =filterItems('SOUTH')
-       let numEast =filterItems('EAST')
-       let numWest =filterItems('WEST')
-
-       function removeItemFromArr ( array, item ) {
-        let i = array.indexOf( item );     
-        if ( i !== -1 ) {
-            array.splice( i, 1 );
-        }
-        if (numNoth !== 0 & numSouth.length === numNoth.length){
-            removeItemFromArr(arr, 'NORTH');
-            removeItemFromArr(arr, 'NORTH');
-
-        }
-
-    }
-       
-
-console.log(arr)
-  }
-  let array=["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]
-
+function cakes(recipe, available) {
+  let arrRecipe= Object.keys(recipe)
+  let ArrAvailable = Object.keys(available)
+  let include = '';
+  let arrInclude=[]
   
+  for (let i = 0; i < arrRecipe.length; i++) {
+   include += ArrAvailable.indexOf( arrRecipe[i]) 
+   if(include !=-1){arrInclude.push(ArrAvailable[include])}    
+  }
+
+  if (arrInclude.length === recipes.length){
+    for (let i = 0; i < recipes.length; i++) {
+      arrInclude[i].i/recipe[i].i
+      
+    }
+  
+  }else{return 0}
+
+  console.log (ArrAvailable)
+}
 
 
 
-// Test.assertSimilar(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]), ["WEST"])
-// Test.assertSimilar(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]), ["NORTH", "WEST", "SOUTH", "EAST"])
-// Test.assertSimilar(dirReduc(["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"]), [])
 
+function cakes(){
+let recipes = {flour: 500, sugar: 200, eggs: 1}
+let available = {flour: 1200, sugar: 1200, eggs: 5, milk: 200} 
+let arrRecipe= Object.keys(recipes)
+let ArrAvailable = Object.keys(available)
+let include = '';
+let arrInclude=[]
 
+for (let i = 0; i < arrRecipe.length; i++) {
+ include = ArrAvailable.indexOf( arrRecipe[i]) 
+ if(include !=-1){arrInclude.push(ArrAvailable[include])}  
+}
+if (arrInclude.length === recipes.length){
+  for (let i = 0; i < recipes.length; i++) {
+    arrInclude[]
+    
+  }
 
-dirReduc(array)
+}else{return 0}
+console.log (arrInclude)
+}
+
+cakes()

@@ -1,17 +1,21 @@
-import { Col, Card, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Col, Card, ListGroupItem, ListGroup, Button } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import ProductService from '../../../../service/products.service'
+
 
 class MyProductCard extends Component { 
     constructor() {
         super()
         this.state = {
-            date:""
+            date:"",
+            delete: ''
         }
         this.days=''
         this.hours=''
         this.minutes=''
-        this.seconds = ''           
+        this.seconds = '' 
+        this.productService = new ProductService()          
     }
     componentDidMount() { 
         this.dateInterval= setInterval(() => {
@@ -84,8 +88,22 @@ class MyProductCard extends Component {
         }else{
         return (`${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`)
         // return (`${this.state.days} dias, ${this.state.hours} horas, ${this.state.minutes} minutos, ${this.state.seconds} segundos`)
-        }   
+        }
     }
+        
+
+   deleteMyProduct(id){   
+       console.log(id)     
+        this.productService     
+        .deleteProduct(id) 
+        .then (() => this.props.history.push('/mis-productos'))
+        .catch(err => console.log({ err }))
+    }
+    
+
+
+
+    
     render() {
     return (
         <Col lg={4}>
@@ -103,6 +121,7 @@ class MyProductCard extends Component {
                         <ListGroupItem>Precio incial del producto: {this.props.initialPrice} </ListGroupItem>
                         <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>
                         <ListGroupItem><Link to={`/editar-mi-producto/${this.props._id}`}>Editar mi producto</Link></ListGroupItem>
+                        <ListGroupItem> <Button onClick={()=>this.deleteMyProduct(this.props._id)}>Borrar producto</Button></ListGroupItem>
 
                     </ListGroup>
             </Card>

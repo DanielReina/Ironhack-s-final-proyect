@@ -53,6 +53,16 @@ router.get('/productBySeller/:user_id', (req, res, next) => {
 })
 
 
+router.delete('/deleteProduct/:product_Id', (req, res, next) => {
+    const productId = req.params.product_Id
+    console.log('aqui estoy', productId)
+    Product
+        .findByIdAndDelete(productId)
+        .then(response => res.json(response))
+        .catch(err => next(new Error(err)))
+})
+
+
 
 
 

@@ -33,9 +33,13 @@ class EditProfile extends Component {
             .catch(err => console.log(err))
     }
 
+componentDidMount(){
+    // this.props.looggedUser && 
+}
+
 
     render() {
-
+// console.log('esta es la props'this.props.loggedUser,'esta es la anterior', this.props.storeUser)
         return (
 
             <Container>

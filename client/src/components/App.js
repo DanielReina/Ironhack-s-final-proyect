@@ -58,7 +58,7 @@ render() {
               <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to="/iniciar-sesion" />} />
               <Route path="/lista-de-productos" exact render={() => <ProductsList/>} />
               <Route path="/mis-datos"  render={elm =><MyInfo key={elm._id} {...elm} loggedUser={this.state.loggedInUser} />} />
-              <Route path="/editar-mis-datos"  render={props => <EditProfile storeUser={this.setTheUser} {...props} />} />
+              <Route path="/editar-mis-datos"  render={props => <EditProfile storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} {...props} />} />
               <Route path="/mis-productos" exact render={elm => <MyProducts {...elm} loggedUser={this.state.loggedInUser} />} />
               <Route path="/editar-mi-producto/:product_id"  render={props => <EditMyProduct {...props} />} />
 
