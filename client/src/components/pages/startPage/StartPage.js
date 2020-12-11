@@ -31,12 +31,12 @@ class StartPage extends Component {
                 <Row>
                     <Col  md={{span:6}}>
                         <div>
-                            <Link to='#'>Venta directa</Link>
+                            <Link to='/venta-directa'>Venta directa</Link>
                         </div>            
                     </Col>
                     <Col  md={{span:6}}>           
                         <div>
-                            <Link to='#'>Subastas</Link>
+                            <Link to='/subastas'>Subastas</Link>
                         </div>
                     </Col>
 
@@ -53,14 +53,7 @@ class StartPage extends Component {
                         </div>
                     </Col>
                 </Row>
-                <Row>
-                    <Col  md={{span:12}}>
-                        <div>
-                            <Link to='/nuevo-producto'>Nuevo producto</Link>
-                           
-                        </div>            
-                    </Col>
-                </Row>        
+                    
            
             </Container>
             )

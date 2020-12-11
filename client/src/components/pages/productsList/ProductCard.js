@@ -1,10 +1,12 @@
-import { Col, Card, ListGroupItem, ListGroup } from 'react-bootstrap'
+import { Col, Card, ListGroupItem, ListGroup, Button, ButtonGroup } from 'react-bootstrap'
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 class ProductCard extends Component { 
     constructor() {
         super()
         this.state = {
-            date:""
+            date:"",
+            User:undefined
         }
         this.days=''
         this.hours=''
@@ -13,7 +15,7 @@ class ProductCard extends Component {
     }
     componentDidMount() { 
         this.dateInterval= setInterval(() => {
-            this.setState({date:this.getTime()})
+            this.setState({date:this.getTime(),  User:this.props.loggedUser})
         }, 1000) 
     }
     componentWillUnmount() {
@@ -85,6 +87,7 @@ class ProductCard extends Component {
         }   
     }
     render() {
+        console.log('en las cards', this.props.loggedUser)
     return (
         <Col lg={4}>
             <Card className="product-card">
@@ -101,9 +104,24 @@ class ProductCard extends Component {
                         <ListGroupItem>Precio incial del producto: {this.props.initialPrice} </ListGroupItem>
                         <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>
                     </ListGroup>
+
+                   {this.state.User!=undefined                
+                            ?
+                            <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
+                            <Button className="btn btn-dark">Quiero pujar</Button>
+                              
+                            </ButtonGroup>
+                          
+                            :
+                            <></>}
             </Card>
         </Col>
     )
     }
 }
 export default ProductCard
+
+  {/* <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
+                                <Button className="btn btn-dark">Editar</Button>
+                                <Link className="btn btn-dark" to={`#`}>Ver detalles</Link>
+                            </ButtonGroup> */}

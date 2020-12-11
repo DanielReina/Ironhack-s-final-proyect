@@ -19,6 +19,9 @@ import MyInfo from './pages/profile/myinfo/myInfo'
 import EditProfile from './pages/profile/EditProfile'
 import MyProducts from './pages/profile/myproducts/MyProducts'
 import EditMyProduct from './pages/profile/myproducts/EditMyProduct'
+import Directsale from './pages/directsale/DirectSale'
+import Auctions from './pages/auctions/auctions'
+
 
 class App extends Component {
 
@@ -61,6 +64,8 @@ render() {
               <Route path="/editar-mis-datos"  render={props => <EditProfile storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} {...props} />} />
               <Route path="/mis-productos" exact render={elm => <MyProducts {...elm} loggedUser={this.state.loggedInUser} />} />
               <Route path="/editar-mi-producto/:product_id"  render={props => <EditMyProduct {...props} />} />
+              <Route path="/venta-directa"  render={props => <Directsale {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/subastas"  render={props => <Auctions {...props} loggedUser={this.state.loggedInUser} />} />
 
 
               {/* <Route path="/editar-producto"  render={props => <EditProducts {...props} />} /> */}

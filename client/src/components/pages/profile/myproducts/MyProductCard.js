@@ -117,8 +117,9 @@ class MyProductCard extends Component {
                 </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroupItem>Id del producto: {this.props._id}</ListGroupItem>
-                        <ListGroupItem>Categoría de venta: {this.props.category} </ListGroupItem>
-                        <ListGroupItem>Precio incial del producto: {this.props.initialPrice} </ListGroupItem>
+                        <ListGroupItem>Categoría: {this.props.category} </ListGroupItem>
+                        <ListGroupItem>Método de venta: {this.props.salesMethod} </ListGroupItem>
+                        <ListGroupItem>Precio incial del producto: {this.props.initialPrice} €</ListGroupItem>
                         <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>
                         <ListGroupItem><Link to={`/editar-mi-producto/${this.props._id}`}>Editar mi producto</Link></ListGroupItem>
                         <ListGroupItem> <Button onClick={()=>this.deleteMyProduct(this.props._id)}>Borrar producto</Button></ListGroupItem>

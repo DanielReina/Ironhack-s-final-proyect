@@ -1,48 +1,16 @@
-function cakes(recipe, available) {
-  let arrRecipe= Object.keys(recipe)
-  let ArrAvailable = Object.keys(available)
-  let include = '';
-  let arrInclude=[]
-  
-  for (let i = 0; i < arrRecipe.length; i++) {
-   include += ArrAvailable.indexOf( arrRecipe[i]) 
-   if(include !=-1){arrInclude.push(ArrAvailable[include])}    
-  }
+function scramble(str1, str2) {
+let arr=[] 
+let lCStr1=str1.toLowerCase()
+let lCStr2=str2.toLowerCase()
 
-  if (arrInclude.length === recipes.length){
-    for (let i = 0; i < recipes.length; i++) {
-      arrInclude[i].i/recipe[i].i
-      
-    }
-  
-  }else{return 0}
-
-  console.log (ArrAvailable)
+for (let i = 0; i < lCStr1.length; i++) {
+if(lCStr1.includes(lCStr2[i])){arr.push(lCStr2[i])}
 }
+if (arr.length>=lCStr2.length){
+return true}else{return false}
+ }
 
 
 
 
-function cakes(){
-let recipes = {flour: 500, sugar: 200, eggs: 1}
-let available = {flour: 1200, sugar: 1200, eggs: 5, milk: 200} 
-let arrRecipe= Object.keys(recipes)
-let ArrAvailable = Object.keys(available)
-let include = '';
-let arrInclude=[]
-
-for (let i = 0; i < arrRecipe.length; i++) {
- include = ArrAvailable.indexOf( arrRecipe[i]) 
- if(include !=-1){arrInclude.push(ArrAvailable[include])}  
-}
-if (arrInclude.length === recipes.length){
-  for (let i = 0; i < recipes.length; i++) {
-    arrInclude[]
-    
-  }
-
-}else{return 0}
-console.log (arrInclude)
-}
-
-cakes()
+ scramble('cedewaraaossoqqyt', 'codewars')

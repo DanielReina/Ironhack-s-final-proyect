@@ -38,9 +38,6 @@ componentDidUpdate(prevProps) {
   })
     .catch(err => console.log(err))
 }}
-componentWillUnmount() {
-  console.log('soy el componente componentWillUnmount y esto se desmonta')
-}
 
 
     render(){
