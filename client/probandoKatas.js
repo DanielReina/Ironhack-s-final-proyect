@@ -12,5 +12,44 @@ return true}else{return false}
 
 
 
-
  scramble('cedewaraaossoqqyt', 'codewars')
+
+ import React, { Component } from 'react'
+
+class Counter extends Component {
+
+    constructor() {
+        super()
+        this.state = { count:0 }
+    }
+
+    incrementCount = () => {
+      
+        let value = this.state.count
+        let newValue = value + 1
+        this.setState({ count: newValue })
+    }
+  
+   decrementCount = () => {
+      
+        let value = this.state.count
+        let newValue = value - 1
+        this.setState({ count: newValue })
+    }
+
+    render() {
+        return( 
+         <>
+            <h1 className='counter'>{this.state.count}</h1>
+            <button className='increment' onClick={this.incrementCount}>increment</button>
+            <button className='decrement' onClick={this.decrementCount}>decrement</button>
+         </> )
+    }
+}
+
+// export default Counter
+
+
+
+
+

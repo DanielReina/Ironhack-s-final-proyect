@@ -50,9 +50,9 @@ class EditMyProduct extends Component {
 
       
     }
-  componentDidMount(){
-    this.Myinfo()
-  }
+    componentDidMount(){
+        this.Myinfo()
+    }
 
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -68,11 +68,11 @@ class EditMyProduct extends Component {
             .catch(err => console.log(err))
     }
 
-submit (){this.setState({prueba: true})}
+    submit (){this.setState({prueba: true})}
 
     render() {
      
-   console.log('Mi producto', this.props.history)
+        console.log('Mi producto', this.props.history)
         return (
             <>
                 <h1>Edita el producto</h1>

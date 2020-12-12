@@ -8,10 +8,11 @@ class ProductsList extends Component {
     constructor(){
         super()
         this.state = {
-            products: []
+            products: [],
+            filterproducts:[]
         }
         this.productService = new ProductService()
-        console.log(this.productService)
+     
     }
 
     componentDidMount = () => {

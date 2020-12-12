@@ -1,21 +1,24 @@
-import { Col, Card, ListGroupItem, ListGroup, Button, ButtonGroup } from 'react-bootstrap'
+import { Col, Container, Row, Button, Form } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-class ProductCard extends Component { 
+import ProductService from '../../../service/products.service'
+
+
+class Details extends Component { 
     constructor() {
         super()
         this.state = {
             date:"",
-            User:undefined
+            User:undefined,
+            product: undefined,
+  
+
         }
-        this.days=''
-        this.hours=''
-        this.minutes=''
-        this.seconds = ''           
+        this.productService = new ProductService()    
     }
     componentDidMount() { 
         this.dateInterval= setInterval(() => {
-            this.setState({date:this.getTime(),  User:this.props.loggedUser})
+            this.setState({date:this.getTime(),  User:this.props.loggedUser, product:this.props.productProps})
         }, 1000) 
     }
     componentWillUnmount() {
@@ -71,8 +74,9 @@ class ProductCard extends Component {
           let hour = `${correctStringNumber}`+`${string.substring(13, 19)}`
        return (`${month} ${day}, ${year} ${hour}`)
         }
+
     getTime(){
-        let dateTo =this.wrongDateFormat(`${this.props.timeLimit}`)
+        let dateTo =this.wrongDateFormat(`${this.props.productProps.timeLimit}`)
         let now = new Date(),
             time = (new Date(dateTo) - now + 1000) / 1000,
             seconds = ('0' + Math.floor(time % 60)).slice(-2),
@@ -83,42 +87,51 @@ class ProductCard extends Component {
             return (`Dejó de estar a la venta en ${dateTo}`)
         }else{
         return (`${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`)
-        // return (`${this.state.days} dias, ${this.state.hours} horas, ${this.state.minutes} minutos, ${this.state.seconds} segundos`)
         }   
     }
+
+ 
     render() {
-        console.log('en las cards', this.props.loggedUser)
+       
     return (
-        <Col lg={4}>
-            <Card className="product-card">
-                <Card.Img variant="top" src={this.props.mainImage} />
-                <Card.Body>
-                    <Card.Title>{this.props.title}</Card.Title>
-                    <Card.Text>
-                    {this.props.description}
-                    </Card.Text>
-                </Card.Body>
-                    <ListGroup className="list-group-flush">           
-                    <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>
-                    </ListGroup>
-                    <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                    <Link to={`/detalles-de-producto/${this.props._id}`} className="btn btn-sm btn-dark">Ver detalles</Link>                             
-                    </ButtonGroup>   
-                   {this.state.User!=undefined                
-                            ?
-                            <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                            <Link to={`/detalles-de-producto/${this.props._id}`} className="btn btn-sm btn-dark">Ver detalles</Link>                             
-                            </ButtonGroup>                          
-                            :
-                            <></>}
-            </Card>
+    <Container>
+     {this.state.product && 
+    <Row>
+        <Col lg={6}>    
+            <img src={this.state.product.mainImage} alt={`Imágen de ${this.state.product.title}`} ></img>           
         </Col>
+        <Col lg={6}>
+            <div>  
+            <h1>{this.state.product.title}</h1> 
+            <p>{this.state.product.description}</p>   
+            </div>
+            <hr></hr>
+            <div>
+                <p>Tipo de venta: {this.state.product.salesMethod}</p>
+                <p>Categoría: {this.state.product.category}</p>
+                <p>ID: {this.state.product._id}</p>
+            </div> 
+            <hr></hr> 
+            <div>
+                <p>Finaliza en: {this.state.date}</p>
+                <p>Precio de salida: {this.state.product.initialPrice}</p>
+                <p>Puja actual: </p>
+                <p>Número de pujas: </p>
+            </div> 
+            <hr></hr> 
+            <Form onSubmit={this.handleSubmit}>
+                <Form.Group controlId="timeLimit">
+                    <Form.Label>Haga su puja</Form.Label>
+                    <Form.Control type="number" name="timeLimit" value={this.state.timeLimit} onChange={this.handleInputChange} />
+                </Form.Group>
+                <Button variant="dark" type="submit" onClick={()=>this.submit()} >Pujar </Button>
+            </Form>
+        </Col>
+    </Row>
+    }   
+    </Container>
     )
     }
 }
-export default ProductCard
+export default Details
 
-  {/* <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                                <Button className="btn btn-dark">Editar</Button>
-                                <Link className="btn btn-dark" to={`#`}>Ver detalles</Link>
-                            </ButtonGroup> */}

@@ -11,6 +11,7 @@ class ProductService {
     }
 
     getProducts = () => this.apiHandler.get('/')
+    getOneProduct = productId => this.apiHandler.get(`/getOneProduct/${productId}`)
     getMyProducts =userId => this.apiHandler.get(`/productBySeller/${userId}`)   
     saveProduct = ProductsInfo => this.apiHandler.post(`/newProduct`, ProductsInfo)
     editProduct = (productId, productInfo) => this.apiHandler.put(`/editProduct/${productId}`, productInfo)
