@@ -28,8 +28,7 @@ componentDidMount = () => {
   
 }
 
-    filter(e){        
-    
+    filter(e){    
     let text =e.target.value
     const data = this.state.productBackup
     const newData = data.filter(function(item){
@@ -70,14 +69,14 @@ console.log('en el navbar', this.state.products)
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
-            {this.state.textBuscar.length!=0 &&
+            {/* {this.state.textBuscar.length!=0 &&
             <Container>
             <h1>Listado de productos</h1>
                 <Row>           
                     {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
                 </Row>
-            </Container>
-            }
+            </Container> */}
+            
             
             </>
         )

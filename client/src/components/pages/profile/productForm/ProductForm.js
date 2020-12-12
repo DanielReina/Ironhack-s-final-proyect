@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ProductService from '../../../../service/products.service'
+import FilesService from './../../../../service/upload.service'
+import Spinner from './../../../shared/Spinner/Loader'
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -8,17 +10,21 @@ class ProductForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: '',
-            description: '',
-            category: '',
-            initialPrice: '',
-            mainImage: '',
-            timeLimit: '',
-            detailsImages: '', 
-            salesMethod: '',
-            seller:props.loggedUser ? props.loggedUser._id : ''
+            
+                title: '',
+                description: '',
+                category: '',
+                initialPrice: '',
+                mainImage: '',
+                timeLimit: '',
+                detailsImages: '', 
+                salesMethod: '',
+                seller:props.loggedUser ? props.loggedUser._id : ''
+          
+       
         }
         this.productService = new ProductService()
+        this.filesService = new FilesService()
     }
 
 
@@ -28,12 +34,20 @@ class ProductForm extends Component {
     }
 
 
-//     componentDidUpdate(){
-//         if(this.props.loggedUser){
-//             {this.setState({seller:this.props.loggedUser._id})
-//         }
-//     }
-// }
+    handleImageUpload = e => {
+
+        const uploadData = new FormData()
+        uploadData.append('mainImage', e.target.files[0])
+        console.log('ESTO ES UNA IMAGEN EN MEMORIA:', e.target.files[0])
+
+        this.setState({ uploadingActive: true })
+
+        this.filesService
+            .uploadImage(uploadData)
+            .then(response => {this.setState({product: { ...this.state, mainImage: response.data.secure_url }})
+            })
+            .catch(err => console.log('ERRORRR!', err))
+    }
       
    
 
@@ -43,7 +57,7 @@ class ProductForm extends Component {
         e.preventDefault()
 
         this.productService
-            .saveProduct(this.state)
+            .saveProduct(this.state.product)
             .then(res => {
                 console.log(res)
             })
@@ -96,9 +110,9 @@ class ProductForm extends Component {
                         <Form.Label>Precio inicial</Form.Label>
                         <Form.Control type="number" name="initialPrice" value={this.state.initialPrice} onChange={this.handleInputChange} />
                     </Form.Group>
-                    <Form.Group controlId="mainImage">
-                        <Form.Label>Imagen principal</Form.Label>
-                        <Form.Control type="text" name="mainImage" value={this.state.mainImage} onChange={this.handleInputChange} />
+                    <Form.Group>
+                        <Form.Label>Imagen (file)</Form.Label>
+                        <Form.Control type="file" onChange={this.handleImageUpload} />
                     </Form.Group>
                     {/* <Form.Group controlId="detailsImages">
                         <Form.Label>Imágenes extras</Form.Label>
