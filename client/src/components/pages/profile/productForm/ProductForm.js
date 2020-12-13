@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import ProductService from '../../../../service/products.service'
 import FilesService from './../../../../service/upload.service'
-import Spinner from './../../../shared/Spinner/Loader'
-
 import { Form, Button } from 'react-bootstrap'
 
 class ProductForm extends Component {
@@ -38,10 +36,7 @@ class ProductForm extends Component {
 
         const uploadData = new FormData()
         uploadData.append('mainImage', e.target.files[0])
-        console.log('ESTO ES UNA IMAGEN EN MEMORIA:', e.target.files[0])
-
         this.setState({ uploadingActive: true })
-
         this.filesService
             .uploadImage(uploadData)
             .then(response => {this.setState({product: { ...this.state, mainImage: response.data.secure_url }})
@@ -58,15 +53,13 @@ class ProductForm extends Component {
 
         this.productService
             .saveProduct(this.state.product)
-            .then(res => {
-                console.log(res)
-            })
+            .then(res => {console.log(res)})
             .catch(err => console.log(err))
     }
 
 
     render() {
-        console.log('aqui andooo yoo', this.props.loggedUser)
+   
         return (
             <>
                 <h1>Nuevo producto</h1>
@@ -100,16 +93,24 @@ class ProductForm extends Component {
                      
                         </Form.Control>
                     </Form.Group>
-
+                    {this.state.salesMethod==='Subasta' ?
+                    <>
                     <Form.Group controlId="timeLimit">
                         <Form.Label>Fecha límite de puja</Form.Label>
                         <Form.Control type="datetime-local" name="timeLimit" value={this.state.timeLimit} onChange={this.handleInputChange} />
                     </Form.Group>
 
                     <Form.Group controlId="initialPrice">
-                        <Form.Label>Precio inicial</Form.Label>
+                        <Form.Label>Precio de salida</Form.Label>
                         <Form.Control type="number" name="initialPrice" value={this.state.initialPrice} onChange={this.handleInputChange} />
                     </Form.Group>
+                    </>
+                    :
+                    <Form.Group controlId="initialPrice">
+                        <Form.Label>Precio</Form.Label>
+                        <Form.Control type="number" name="initialPrice" value={this.state.initialPrice} onChange={this.handleInputChange} />
+                    </Form.Group>
+                    }
                     <Form.Group>
                         <Form.Label>Imagen (file)</Form.Label>
                         <Form.Control type="file" onChange={this.handleImageUpload} />

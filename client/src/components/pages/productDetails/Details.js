@@ -1,6 +1,5 @@
 import { Col, Container, Row, Button, Form } from 'react-bootstrap'
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import ProductService from '../../../service/products.service'
 
 
@@ -112,9 +111,11 @@ class Details extends Component {
                 <p>ID: {this.state.product._id}</p>
             </div> 
             <hr></hr> 
+            {this.state.product.salesMethod==='Subasta' ?
+            <>
             <div>
                 <p>Finaliza en: {this.state.date}</p>
-                <p>Precio de salida: {this.state.product.initialPrice}</p>
+                <p>Precio de salida: {this.state.product.initialPrice} €</p>
                 <p>Puja actual: </p>
                 <p>Número de pujas: </p>
             </div> 
@@ -126,6 +127,12 @@ class Details extends Component {
                 </Form.Group>
                 <Button variant="dark" type="submit" onClick={()=>this.submit()} >Pujar </Button>
             </Form>
+            </>:
+            <>
+            <p>Precio : {this.state.product.initialPrice} €</p> 
+            <Button variant="dark" type="submit" >Comprar </Button>
+            </>
+            }
         </Col>
     </Row>
     }   

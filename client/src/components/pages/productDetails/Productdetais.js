@@ -1,6 +1,5 @@
-import { Col, Card, ListGroupItem, ListGroup, Button, ButtonGroup, Container, Row } from 'react-bootstrap'
+
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import ProductService from './../../../service/products.service'
 import Details from './Details'
 
@@ -25,7 +24,7 @@ class ProductDetails extends Component {
     }
 
     render() {
-console.log('detalles de producto', this.state.product)
+
         return (
             <>
                 <Details productProps ={this.state.product} />

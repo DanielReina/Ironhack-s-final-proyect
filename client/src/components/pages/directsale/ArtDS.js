@@ -5,7 +5,7 @@ import ProductCard from './../productsList/ProductCard'
 
 
 
-class Directsale extends Component {    
+class ArtDS extends Component {    
      
   constructor(){
     super()
@@ -19,12 +19,14 @@ class Directsale extends Component {
 componentDidMount(){
     
     let sProducts
+    let mProducts
 
     this.productService
         .getProducts()
         .then(res => {
              sProducts=res.data.filter(product => product.salesMethod === 'Venta directa')
-            this.setState({salesProducts: sProducts})
+             mProducts=sProducts.filter(product => product.category === 'Arte')
+            this.setState({salesProducts: mProducts})
     })
         .catch(err => console.log(err))
   }
@@ -34,7 +36,7 @@ componentDidMount(){
 
     return (
       <Container>
-      <h1>Venta Directa</h1>
+      <h1>Venta Directa: Arte</h1>
           <Row>           
               {this.state.salesProducts.map(elm => <ProductCard key={elm._id} {...elm} loggedUser={this.props.loggedUser}/>)}           
           </Row>
@@ -43,4 +45,6 @@ componentDidMount(){
 }
 }
 
-export default Directsale
+export default ArtDS
+
+

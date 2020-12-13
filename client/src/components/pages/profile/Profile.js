@@ -16,10 +16,7 @@ class Profile extends Component {
             <h2>Mi cuenta</h2>
             <Col>
             <Link to='/mis-datos'>Mis datos</Link>
-            </Col>
-            <Col>
-            <Link to='/editar-mis-datos'>Editar mis datos</Link>
-            </Col>
+            </Col>          
             <hr />
             <h2>Mis subastas</h2>
             <Col>

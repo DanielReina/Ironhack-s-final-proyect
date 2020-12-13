@@ -24,7 +24,7 @@ class Navigation extends Component {
     }
 
     render() {
-console.log('holass', this.props.loggedUser)
+
         return (
 
         <Nav className='mr-auto' >                        
@@ -35,19 +35,33 @@ console.log('holass', this.props.loggedUser)
                  <Link to='/subastas'>Todos los productos</Link>
                
                     <NavDropdown title="Por categorías" id="nav-dropdown">
-                    <Link to='#'>Relojes</Link>
+                    <Link to='/subastas-relojes'>Relojes</Link>
                     <NavDropdown.Divider />
-                    <Link to='#'>Joyas</Link>
+                    <Link to='/subastas-joyas'>Joyas</Link>
                     <NavDropdown.Divider />
-                    <Link to='#'>Arte</Link>
+                    <Link to='/subastas-arte'>Arte</Link>
                     <NavDropdown.Divider />
-                    <Link to='#'>Otros</Link>
+                    <Link to='/subastas-otros'>Otros</Link>
                     </NavDropdown>
               
             </NavDropdown>
-            <Nav.Item>
-                <Nav.Link href="/venta-directa">Venta directa</Nav.Link>
-            </Nav.Item>
+            <NavDropdown title="Venta directa" id="nav-dropdown">
+                 <Link to='/venta-directa'>Todos los productos</Link>
+               
+                    <NavDropdown title="Por categorías" id="nav-dropdown">
+                    <Link to='/vd-relojes'>Relojes</Link>
+                    <NavDropdown.Divider />
+                    <Link to='/vd-joyas'>Joyas</Link>
+                    <NavDropdown.Divider />
+                    <Link to='/vd-arte'>Arte</Link>
+                    <NavDropdown.Divider />
+                    <Link to='/vd-otros'>Otros</Link>
+                    </NavDropdown>
+              
+            </NavDropdown>
+
+
+            
             <Nav.Item>          
             <Link to='/perfil'>Mi perfil</Link>
             </Nav.Item>

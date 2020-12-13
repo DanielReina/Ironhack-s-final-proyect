@@ -39,7 +39,7 @@ componentDidMount(){
 
 
     render() {
-// console.log('esta es la props'this.props.loggedUser,'esta es la anterior', this.props.storeUser)
+
         return (
 
             <Container>

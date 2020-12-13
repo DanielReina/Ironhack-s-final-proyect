@@ -4,9 +4,8 @@ import './App.css';
 import { Container, Row, Col, Navbar, FormControl,Form} from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import logo from './layout/headerNavbar/logoHome.jpg'
 
-import HeaderNavbar from './layout/headerNavbar/HeaderNavbar'
+import logo from './layout/headerNavbar/misubastas.jpeg'
 import Home from './pages/home/home'
 import StartPage from './pages/startPage/StartPage'
 import ProductForm from './pages/profile/productForm/ProductForm'
@@ -25,6 +24,14 @@ import Directsale from './pages/directsale/DirectSale'
 import Auctions from './pages/auctions/auctions'
 import ProductDetails from './pages/productDetails/Productdetais.js'
 import ProductCard from './pages/productsList/ProductCard'
+import WatchAuctions from './pages/auctions/watchAuction'
+import ArtAuctions from './pages/auctions/ArtAuctions';
+import JewelryAuctions from './pages/auctions/JewelryAuctions';
+import OtherAuctions from './pages/auctions/OtherAuctions';
+import ArtDS from './pages/directsale/ArtDS';
+import WatchDS from './pages/directsale/WatchDS';
+import OtherDS from './pages/directsale/OtherDS';
+import JewelryDS from './pages/directsale/JewelryDS';
 
 
 
@@ -74,11 +81,11 @@ filter(e){
 setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El nuevo estado de App es:', this.state))
 
 render() {
-console.log('app consola',this.state.productBackup)
+
   return (
     <>
-    <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark">
-      <Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo} width="30" height="30" className="d-inline-block align-top" style={{ width: '30px' }}/>Portada</Navbar.Brand>
+    <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
+      <Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo}  className="d-inline-block align-top" style={{ width: '30px' }}/>Portada</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">      
           <Form inline>
@@ -92,17 +99,17 @@ console.log('app consola',this.state.productBackup)
           <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
         </Col>
         <Col  xs={11}>
-          {this.state.textBuscar.length!=0 &&
+          {this.state.textBuscar.length!==0 && this.state.textBuscar[0]!==' ' ?          
             <Container>
               <h1>Listado de productos</h1>
               <Row>           
                   {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
               </Row>
-            </Container>}      
+            </Container> : <></> }     
           <main> 
             <Switch>
               <Route path="/" exact render={() => <Home/>} />
-              <Route path="/inicio"  render={() => <StartPage/>} />
+              <Route path="/inicio"  render={() => <StartPage storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />} />
               <Route path="/nuevo-producto"  render={() => <ProductForm loggedUser={this.state.loggedInUser}/>} />
               <Route path="/iniciar-sesion"  render={props => <Login  storeUser={this.setTheUser} {...props} />} />
               <Route path="/registro"  render={props => <Signup storeUser={this.setTheUser} {...props} />} />
@@ -115,16 +122,25 @@ console.log('app consola',this.state.productBackup)
               <Route path="/venta-directa"  render={props => <Directsale {...props} loggedUser={this.state.loggedInUser} />} />
               <Route path="/subastas"  render={props => <Auctions {...props} loggedUser={this.state.loggedInUser} />} />
               <Route path="/detalles-de-producto/:product_id"  render={props => <ProductDetails {...props} loggedUser={this.state.loggedInUser} />} />
-       
-  
+              <Route path="/subastas-relojes" exact render={props => <WatchAuctions {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/subastas-arte" exact render={props => <ArtAuctions {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/subastas-joyas" exact render={props => <JewelryAuctions {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/subastas-otros" exact render={props => <OtherAuctions {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/vd-arte" exact render={props => <ArtDS {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/vd-relojes" exact render={props => <WatchDS {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/vd-otros" exact render={props => <OtherDS {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/vd-joyas" exact render={props => <JewelryDS {...props} loggedUser={this.state.loggedInUser} />} />
             </Switch>
           </main>
         </Col>
       </Row>
     </Container>
+    <footer>.</footer>
     </>
     )
   }
 }
 
 export default App;
+
+// {this.state.textBuscar.length!=0 && (this.state.textBuscar[0]!=' '|| this.state.length===0)? 

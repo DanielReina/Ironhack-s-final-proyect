@@ -1,7 +1,6 @@
 import { Container, Row} from 'react-bootstrap'
 import ProductService from './../../../../service/products.service'
 import React, { Component } from 'react'
-
 import MyProductCard from './MyProductCard'
 
 class MyProducts extends Component {    
@@ -18,11 +17,10 @@ class MyProducts extends Component {
 
 componentDidMount = () => {
   
-  if(this.props.loggedUser != undefined){
+  if(this.props.loggedUser !== undefined){
   const userId = this.props.loggedUser._id
-  console.log('soy el componente componentDidMount')
   this.productService
-      .getMyProducts(this.props.loggedUser._id)
+      .getMyProducts(userId)
       .then(res => this.setState({ myProducts: res.data }))
       .catch(err => console.log(err))}
 }
@@ -32,16 +30,12 @@ componentDidUpdate(prevProps) {
   if (!prevProps.loggedUser && this.props.loggedUser) 
   {this.productService
     .getMyProducts(this.props.loggedUser._id)
-    .then(res => {
-      console.log('soy el componentDidUpdate funcionando')
-      this.setState({myProducts: res.data})
-  })
+    .then(res => this.setState({myProducts: res.data}))
     .catch(err => console.log(err))
 }}
 
 
     render(){
-       console.log('soy el render', this.props.loggedUser)
     return (
       <Container>
       <h1>Listado de productos</h1>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import ProductService from '../../../../service/products.service'
-import { Switch, Route} from 'react-router-dom'
-
 import { Form, Button } from 'react-bootstrap'
 
 class EditMyProduct extends Component {
@@ -72,7 +70,7 @@ class EditMyProduct extends Component {
 
     render() {
      
-        console.log('Mi producto', this.props.history)
+
         return (
             <>
                 <h1>Edita el producto</h1>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Navbar, Button, Form, FormControl, Container, Row} from 'react-bootstrap'
-import logo from './logoHome.jpg'
+import { Navbar, Form, FormControl} from 'react-bootstrap'
+import logoweb from './misubastas.jpeg'
 import './HeaderNavbar.css'
-import ProductList from './../../pages/productsList/ProductsList'
 import ProductService from './../../../service/products.service'
-import ProductCard from './../../pages/productsList/ProductCard'
+
 
 
 class HeaderNavbar extends Component {
@@ -47,13 +46,13 @@ componentDidMount = () => {
 
 
     render() {
-console.log('en el navbar', this.state.products)
+
         return (
             <>
             <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark">
                 <Navbar.Brand href="/" className="ml-auto">  <img
                                 alt="Logotipo"
-                                src={logo}
+                                src={logoweb}
                                 width="30"
                                 height="30"
                                 className="d-inline-block align-top"

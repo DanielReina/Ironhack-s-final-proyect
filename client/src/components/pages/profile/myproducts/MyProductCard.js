@@ -93,8 +93,7 @@ class MyProductCard extends Component {
         
 
    deleteMyProduct(id){   
-       console.log(id)     
-        this.productService     
+      this.productService     
         .deleteProduct(id) 
         .then (() => this.props.history.push('/mis-productos'))
         .catch(err => console.log({ err }))
@@ -120,7 +119,8 @@ class MyProductCard extends Component {
                         <ListGroupItem>Categoría: {this.props.category} </ListGroupItem>
                         <ListGroupItem>Método de venta: {this.props.salesMethod} </ListGroupItem>
                         <ListGroupItem>Precio incial del producto: {this.props.initialPrice} €</ListGroupItem>
-                        <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>
+                        {this.props.salesMethod === 'Subasta' &&  
+                        <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>}
                         <ListGroupItem><Link to={`/editar-mi-producto/${this.props._id}`}>Editar mi producto</Link></ListGroupItem>
                         <ListGroupItem> <Button onClick={()=>this.deleteMyProduct(this.props._id)}>Borrar producto</Button></ListGroupItem>
 

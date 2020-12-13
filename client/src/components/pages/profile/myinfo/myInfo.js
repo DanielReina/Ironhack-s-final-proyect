@@ -3,7 +3,7 @@ import { Col} from 'react-bootstrap'
 
 
 const Myinfo = (props) => {
-    console.log('aqui va el nombre', props.loggedUser)
+
     return (
         <Col lg={4}>
         <h1>Información personal</h1>

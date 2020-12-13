@@ -1,4 +1,4 @@
-import { Col, Card, ListGroupItem, ListGroup, Button, ButtonGroup } from 'react-bootstrap'
+import { Col, Card, ListGroupItem, ListGroup, ButtonGroup } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 class ProductCard extends Component { 
@@ -87,8 +87,7 @@ class ProductCard extends Component {
         }   
     }
     render() {
-        console.log('en las cards', this.props.loggedUser)
-    return (
+      return (
         <Col lg={4}>
             <Card className="product-card">
                 <Card.Img variant="top" src={this.props.mainImage} />
@@ -98,27 +97,24 @@ class ProductCard extends Component {
                     {this.props.description}
                     </Card.Text>
                 </Card.Body>
-                    <ListGroup className="list-group-flush">           
+                    <ListGroup className="list-group-flush">  
+                    {this.props.salesMethod === 'Subasta' 
+                    ?
+                    <>
+                    <ListGroupItem>Precio inicial: {this.props.initialPrice} €</ListGroupItem>       
                     <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>
+                    </>
+                    :
+                    <ListGroupItem>Precio: {this.props.initialPrice} €</ListGroupItem>
+                    }
                     </ListGroup>
                     <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
                     <Link to={`/detalles-de-producto/${this.props._id}`} className="btn btn-sm btn-dark">Ver detalles</Link>                             
                     </ButtonGroup>   
-                   {this.state.User!=undefined                
-                            ?
-                            <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                            <Link to={`/detalles-de-producto/${this.props._id}`} className="btn btn-sm btn-dark">Ver detalles</Link>                             
-                            </ButtonGroup>                          
-                            :
-                            <></>}
-            </Card>
+                </Card>
         </Col>
     )
     }
 }
 export default ProductCard
 
-  {/* <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
-                                <Button className="btn btn-dark">Editar</Button>
-                                <Link className="btn btn-dark" to={`#`}>Ver detalles</Link>
-                            </ButtonGroup> */}
