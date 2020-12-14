@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Nav, NavDropdown} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import './Navigation.css'
 
 import AuthService from '../../../service/auth.service'
 
@@ -27,7 +28,7 @@ class Navigation extends Component {
 
         return (
 
-        <Nav className='mr-auto' >                        
+        <Nav className='navigation' >                        
             <Nav.Item>
                 <Nav.Link href="/inicio">Inicio</Nav.Link>
             </Nav.Item>

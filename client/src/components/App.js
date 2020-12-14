@@ -33,13 +33,14 @@ import WatchDS from './pages/directsale/WatchDS';
 import OtherDS from './pages/directsale/OtherDS';
 import JewelryDS from './pages/directsale/JewelryDS';
 import HeaderNavbar from './layout/headerNavbar/HeaderNavbar'
-
+import FilterList from './pages/productsList/FilterList'
+import {withRouter} from 'react-router'
 
 
 class App extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       loggedInUser: undefined,
       productBackup:[],
@@ -50,7 +51,7 @@ class App extends Component {
     this.productServices = new ProductServices
 }
 
-componentDidMount = () =>{
+componentDidMount = () =>{  
   this.authServices
     .isLoggedIn()
     .then(response => this.setState({loggedInUser: response.data}))
@@ -60,7 +61,16 @@ componentDidMount = () =>{
     .getProducts()
     .then(response => this.setState({products: response.data,  productBackup: response.data}))
     .catch(err => this.setState({products: []})) 
-} 
+
+  this.Interval= setInterval(() => {
+      if(this.state.textBuscar.length!==0){this.props.history.push('/productos-filtrados')}
+    }, 1000) 
+  }
+
+componentWillUnmount() {
+  clearInterval(this.dateInterval)
+}
+
 
 filter(e){    
   let text =e.target.value
@@ -82,11 +92,11 @@ filter(e){
 setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El nuevo estado de App es:', this.state))
 
 render() {
-
+console.log('estoy en app', this.props)
   return (
     <>
-<HeaderNavbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
-    {/* <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
+{/* <HeaderNavbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} /> */}
+    <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
       <Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo}  className="d-inline-block align-top" style={{ width: '30px' }}/>Portada</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">      
@@ -94,24 +104,26 @@ render() {
           <FormControl type="text" value={this.state.text} placeholder="Buscar producto" className="ml-auto" onChange={(text) => this.filter(text)} />
           </Form>
       </Navbar.Collapse>
-    </Navbar> */}
+    </Navbar>
     <Container fluid>
       <Row>
         <Col xs={1}>
           <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
         </Col>
         <Col  xs={11}>
-          {this.state.textBuscar.length!==0 && this.state.textBuscar[0]!==' ' ? 
-                //this.state.products.length   
+      
+          {/* {this.state.textBuscar.length!==0 && this.state.products.length!==0 ? 
+                 
             <Container>
               <h1>Listado de productos</h1>
               <Row>           
                   {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
               </Row>
             </Container> 
-            : <></> }     
+            : <></> }      */}
           <main> 
             <Switch>
+              <Route path="/productos-filtrados" exact render={() => <FilterList text={this.state.textBuscar} products={this.state.products} /> } />
               <Route path="/" exact render={() => <Home/>} />
               <Route path="/inicio"  render={() => <StartPage storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />} />
               <Route path="/nuevo-producto"  render={props  => <ProductForm loggedUser={this.state.loggedInUser} {...props}/>} />
@@ -145,6 +157,6 @@ render() {
   }
 }
 
-export default App;
+export default withRouter(App);
 
 // {this.state.textBuscar.length!=0 && (this.state.textBuscar[0]!=' '|| this.state.length===0)? 

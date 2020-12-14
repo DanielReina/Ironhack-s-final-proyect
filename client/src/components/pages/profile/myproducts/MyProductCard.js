@@ -6,8 +6,8 @@ import './MyProductCard.CSS'
 
 
 class MyProductCard extends Component { 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             date:"",
             delete: ''
@@ -98,13 +98,9 @@ class MyProductCard extends Component {
         .deleteProduct(id) 
         .then (() =>{ 
             console.log('holaaaaaa', this.props.history)
-            this.props.history.push('/perfil')})
+           this.props.fetch()})
         .catch(err => console.log({ err }))
     }
-    
-
-
-
     
     render(){
             return (

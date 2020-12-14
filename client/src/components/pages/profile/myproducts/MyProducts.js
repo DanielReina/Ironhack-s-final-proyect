@@ -15,7 +15,9 @@ class MyProducts extends Component {
 }
 
 
-componentDidMount = () => {  
+componentDidMount = () => this.fetchProducts()
+  
+  fetchProducts=()=> {
   if(this.props.loggedUser !== undefined){
   const userId = this.props.loggedUser._id
   this.productService
@@ -39,7 +41,7 @@ componentDidUpdate(prevProps) {
       <Container>
       <h1>Listado de productos</h1>
           <Row>           
-              {this.state.myProducts.map(elm => <MyProductCard key={elm._id} history={this.props.history}  {...elm}/>)}           
+              {this.state.myProducts.map(elm => <MyProductCard fetch={this.fetchProducts} key={elm._id} history={this.props.history}  {...elm}/>)}           
           </Row>
   </Container>
     )

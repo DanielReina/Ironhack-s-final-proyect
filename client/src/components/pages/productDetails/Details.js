@@ -105,7 +105,7 @@ class Details extends Component {
 
  
     render() {
-       console.log('el producto',this.state.product, 'el user', this.state.User, 'el Id', this.props.match.params.product_id)
+      if(this.props.productProps){console.log('el producto',this.props.productProps.currentBid, 'el user', this.props.match.params.product_id, 'el Id', this.props.match.params.product_id)}
     return (
     <Container>
      {this.state.product && 

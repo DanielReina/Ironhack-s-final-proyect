@@ -46,7 +46,7 @@ filter(e){
 
 
     render() {
-console.log('en navbar', this.state.products)
+
         return (
             <>
           <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
@@ -58,12 +58,13 @@ console.log('en navbar', this.state.products)
           </Form>
       </Navbar.Collapse>
     </Navbar>
-    {this.state.textBuscar.length!==0 && this.state.textBuscar[0]!==' ' ? 
-                //this.state.products.length   
+    {this.state.textBuscar.length!==0 &&  this.state.products.length!==0  ? 
+       // (this.state.textBuscar[0]!==' ' 
             <Container>
-              <h1>Listado de productos</h1>
+              <h1>Productos encontrados por: {this.state.textBuscar}</h1>
               <Row>           
-                  {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
+                  {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)} 
+                    
               </Row>
             </Container> 
             : <></> }     
