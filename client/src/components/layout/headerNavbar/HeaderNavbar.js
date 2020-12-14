@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar, Form, FormControl} from 'react-bootstrap'
-import logoweb from './misubastas.jpeg'
+import logo from './misubastas.jpeg'
 import './HeaderNavbar.css'
 import ProductService from './../../../service/products.service'
 
@@ -11,23 +11,22 @@ class HeaderNavbar extends Component {
     constructor(props) {
         super(props)
         this.state ={
-            products: [],
             productBackup:[],
-            textBuscar:''
+            textBuscar:'',
+            products: []
         }
-        this.productService = new ProductService()
+        this.productServices = new ProductService()
     }
 
 componentDidMount = () => {
 
-    this.productService
-        .getProducts()
-        .then(res => this.setState({products: res.data, productBackup: res.data}))
-        .catch(err => console.log(err))
-  
-}
+    this.productServices
+    .getProducts()
+    .then(response => this.setState({products: response.data,  productBackup: response.data}))
+    .catch(err => this.setState({products: []})) 
+} 
 
-    filter(e){    
+filter(e){    
     let text =e.target.value
     const data = this.state.productBackup
     const newData = data.filter(function(item){
@@ -46,35 +45,18 @@ componentDidMount = () => {
 
 
     render() {
-
+console.log('en navbar', this.state.products)
         return (
             <>
-            <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark">
-                <Navbar.Brand href="/" className="ml-auto">  <img
-                                alt="Logotipo"
-                                src={logoweb}
-                                width="30"
-                                height="30"
-                                className="d-inline-block align-top"
-                                style={{ width: '30px' }}
-                            />Portada</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                
-                    <Form inline>
-                    <FormControl type="text" value={this.state.text} placeholder="Buscar producto" className="ml-auto" onChange={(text) => this.filter(text)} />
-                    {/* <input class="form-control"  value={this.state.text} onChange={(text) => this.filter(text)}/> */}
-                    {/* <Button variant="dark">Search</Button> */}
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
-            {/* {this.state.textBuscar.length!=0 &&
-            <Container>
-            <h1>Listado de productos</h1>
-                <Row>           
-                    {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
-                </Row>
-            </Container> */}
+          <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
+      <Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo}  className="d-inline-block align-top" style={{ width: '30px' }}/>Portada</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">      
+          <Form inline>
+          <FormControl type="text" value={this.state.text} placeholder="Buscar producto" className="ml-auto" onChange={(text) => this.filter(text)} />
+          </Form>
+      </Navbar.Collapse>
+    </Navbar>
             
             
             </>

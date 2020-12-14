@@ -11,17 +11,16 @@ class MyProducts extends Component {
         myProducts: []
     }
     this.productService = new ProductService()
-    // this.userId = this.props.loggedUser._id
+   
 }
 
 
-componentDidMount = () => {
-  
+componentDidMount = () => {  
   if(this.props.loggedUser !== undefined){
   const userId = this.props.loggedUser._id
   this.productService
       .getMyProducts(userId)
-      .then(res => this.setState({ myProducts: res.data }))
+      .then(res => this.setState({myProducts: res.data }))
       .catch(err => console.log(err))}
 }
 
@@ -40,7 +39,7 @@ componentDidUpdate(prevProps) {
       <Container>
       <h1>Listado de productos</h1>
           <Row>           
-              {this.state.myProducts.map(elm => <MyProductCard key={elm._id} {...elm}/>)}           
+              {this.state.myProducts.map(elm => <MyProductCard key={elm._id} history={this.props.history}  {...elm}/>)}           
           </Row>
   </Container>
     )

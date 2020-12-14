@@ -10,12 +10,12 @@ class Details extends Component {
             date:"",
             User:undefined,
             product: undefined,
-  
-
+            currentBid: '',
+            prueba:false
         }
         this.productService = new ProductService()    
     }
-    componentDidMount() { 
+    componentDidMount() {        
         this.dateInterval= setInterval(() => {
             this.setState({date:this.getTime(),  User:this.props.loggedUser, product:this.props.productProps})
         }, 1000) 
@@ -89,9 +89,23 @@ class Details extends Component {
         }   
     }
 
+    handleSubmit = e => {
+        e.preventDefault()
+        const product_id = this.props.match.params.product_id
+
+        this.productService
+            .editProduct(product_id, this.props.productProps.currentBid)
+            .then(res =>this.props.history.push({pathname: ('/inicio')})
+            )
+            .catch(err => console.log(err))
+    }
+
+    handleInputChange = e => this.setState({ currentBid: e.target.value })
+    submit (){this.setState({prueba: true})}
+
  
     render() {
-       
+       console.log('el producto',this.state.product, 'el user', this.state.User, 'el Id', this.props.match.params.product_id)
     return (
     <Container>
      {this.state.product && 
@@ -120,10 +134,11 @@ class Details extends Component {
                 <p>Número de pujas: </p>
             </div> 
             <hr></hr> 
+         
             <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="timeLimit">
+                <Form.Group controlId="currentBid">
                     <Form.Label>Haga su puja</Form.Label>
-                    <Form.Control type="number" name="timeLimit" value={this.state.timeLimit} onChange={this.handleInputChange} />
+                    <Form.Control type="number" name="currentBid" value={this.state.currentBid} onChange={this.handleInputChange} />
                 </Form.Group>
                 <Button variant="dark" type="submit" onClick={()=>this.submit()} >Pujar </Button>
             </Form>

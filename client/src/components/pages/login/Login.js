@@ -23,8 +23,8 @@ class Login extends Component {
             .login(this.state)
             .then(theLoggedInUser => {            
                 this.props.storeUser(theLoggedInUser.data)
-                this.props.history.push('/inicio'
-                )})       
+                this.props.history.push('/inicio')
+                })       
             .catch(err => console.log({ err }))
     }
 

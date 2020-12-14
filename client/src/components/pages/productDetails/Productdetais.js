@@ -27,7 +27,7 @@ class ProductDetails extends Component {
 
         return (
             <>
-                <Details productProps ={this.state.product} />
+                <Details productProps ={this.state.product} loggedUser={this.props.loggedUser} match={this.props.match} />
             </>
         )
     }

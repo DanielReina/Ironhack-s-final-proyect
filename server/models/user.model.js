@@ -36,7 +36,7 @@ const userSchema = new Schema({
         enum: ['ADMIN', 'NORMAL'],
         default: 'NORMAL'
     },
-    biddingAuctions:[{
+    currentAuctions:[{
         type: Schema.Types.ObjectId,
         ref: 'Product'  
     }],

@@ -32,6 +32,7 @@ import ArtDS from './pages/directsale/ArtDS';
 import WatchDS from './pages/directsale/WatchDS';
 import OtherDS from './pages/directsale/OtherDS';
 import JewelryDS from './pages/directsale/JewelryDS';
+import HeaderNavbar from './layout/headerNavbar/HeaderNavbar'
 
 
 
@@ -84,7 +85,8 @@ render() {
 
   return (
     <>
-    <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
+<HeaderNavbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
+    {/* <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
       <Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo}  className="d-inline-block align-top" style={{ width: '30px' }}/>Portada</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">      
@@ -92,25 +94,27 @@ render() {
           <FormControl type="text" value={this.state.text} placeholder="Buscar producto" className="ml-auto" onChange={(text) => this.filter(text)} />
           </Form>
       </Navbar.Collapse>
-    </Navbar>
+    </Navbar> */}
     <Container fluid>
       <Row>
         <Col xs={1}>
           <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
         </Col>
         <Col  xs={11}>
-          {this.state.textBuscar.length!==0 && this.state.textBuscar[0]!==' ' ?          
+          {this.state.textBuscar.length!==0 && this.state.textBuscar[0]!==' ' ? 
+                //this.state.products.length   
             <Container>
               <h1>Listado de productos</h1>
               <Row>           
                   {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
               </Row>
-            </Container> : <></> }     
+            </Container> 
+            : <></> }     
           <main> 
             <Switch>
               <Route path="/" exact render={() => <Home/>} />
               <Route path="/inicio"  render={() => <StartPage storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />} />
-              <Route path="/nuevo-producto"  render={() => <ProductForm loggedUser={this.state.loggedInUser}/>} />
+              <Route path="/nuevo-producto"  render={props  => <ProductForm loggedUser={this.state.loggedInUser} {...props}/>} />
               <Route path="/iniciar-sesion"  render={props => <Login  storeUser={this.setTheUser} {...props} />} />
               <Route path="/registro"  render={props => <Signup storeUser={this.setTheUser} {...props} />} />
               <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to="/iniciar-sesion" />} />
@@ -135,7 +139,7 @@ render() {
         </Col>
       </Row>
     </Container>
-    <footer>.</footer>
+  
     </>
     )
   }

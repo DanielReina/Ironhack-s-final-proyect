@@ -2,6 +2,7 @@ import { Col, Card, ListGroupItem, ListGroup, Button } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ProductService from '../../../../service/products.service'
+import './MyProductCard.CSS'
 
 
 class MyProductCard extends Component { 
@@ -95,7 +96,9 @@ class MyProductCard extends Component {
    deleteMyProduct(id){   
       this.productService     
         .deleteProduct(id) 
-        .then (() => this.props.history.push('/mis-productos'))
+        .then (() =>{ 
+            console.log('holaaaaaa', this.props.history)
+            this.props.history.push('/perfil')})
         .catch(err => console.log({ err }))
     }
     
@@ -103,31 +106,32 @@ class MyProductCard extends Component {
 
 
     
-    render() {
-    return (
-        <Col lg={4}>
-            <Card className="product-card">
-                <Card.Img variant="top" src={this.props.mainImage} />
-                <Card.Body>
-                    <Card.Title>{this.props.title}</Card.Title>
-                    <Card.Text>
-                    {this.props.description}
-                    </Card.Text>
-                </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroupItem>Id del producto: {this.props._id}</ListGroupItem>
-                        <ListGroupItem>Categoría: {this.props.category} </ListGroupItem>
-                        <ListGroupItem>Método de venta: {this.props.salesMethod} </ListGroupItem>
-                        <ListGroupItem>Precio incial del producto: {this.props.initialPrice} €</ListGroupItem>
-                        {this.props.salesMethod === 'Subasta' &&  
-                        <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>}
-                        <ListGroupItem><Link to={`/editar-mi-producto/${this.props._id}`}>Editar mi producto</Link></ListGroupItem>
-                        <ListGroupItem> <Button onClick={()=>this.deleteMyProduct(this.props._id)}>Borrar producto</Button></ListGroupItem>
+    render(){
+            return (
+                       
+                    <Col lg={4}>
+                        <Card className="product-card">
+                            <Card.Img variant="top" src={this.props.mainImage} />
+                            <Card.Body>
+                                <Card.Title>{this.props.title}</Card.Title>
+                                <Card.Text>
+                                {this.props.description}
+                                </Card.Text>
+                            </Card.Body>
+                                <ListGroup className="list-group-flush">
+                                    <ListGroupItem>Id del producto: {this.props._id}</ListGroupItem>
+                                    <ListGroupItem>Categoría: {this.props.category} </ListGroupItem>
+                                    <ListGroupItem>Método de venta: {this.props.salesMethod} </ListGroupItem>
+                                    <ListGroupItem>Precio incial del producto: {this.props.initialPrice} €</ListGroupItem>
+                                    {this.props.salesMethod === 'Subasta' &&  <ListGroupItem>Finaliza en: {this.state.date}</ListGroupItem>}
+                                    <ListGroupItem><Link to={`/editar-mi-producto/${this.props._id}`}>Editar mi producto</Link></ListGroupItem>
+                                    <ListGroupItem> <Button onClick={()=>this.deleteMyProduct(this.props._id)}>Borrar producto</Button></ListGroupItem>
 
-                    </ListGroup>
-            </Card>
-        </Col>
-    )
-    }
+                                </ListGroup>
+                        </Card>
+                    </Col>
+                        
+                    )
+            }
 }
 export default MyProductCard

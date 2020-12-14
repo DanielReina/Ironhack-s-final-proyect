@@ -53,7 +53,7 @@ class ProductForm extends Component {
 
         this.productService
             .saveProduct(this.state.product)
-            .then(res => {console.log(res)})
+            .then(res => {this.props.history.push('/mis-productos')})
             .catch(err => console.log(err))
     }
 
@@ -119,7 +119,7 @@ class ProductForm extends Component {
                         <Form.Label>Imágenes extras</Form.Label>
                         <Form.Control type="text" name="detailsImages" value={this.state.detailsImages} onChange={this.handleInputChange} />
                     </Form.Group> */}
-                    <Button variant="dark" type="submit">Crear producto</Button>
+                    <Button variant="dark" type="submit" to='/inicio' >Crear producto</Button>
                 </Form>
             </>
         )
