@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Navbar, Form, FormControl} from 'react-bootstrap'
+import { Navbar, Form, FormControl, Container, Row} from 'react-bootstrap'
 import logo from './misubastas.jpeg'
 import './HeaderNavbar.css'
 import ProductService from './../../../service/products.service'
+import ProductCard from './../../pages/productsList/ProductCard'
 
 
 
@@ -57,6 +58,15 @@ console.log('en navbar', this.state.products)
           </Form>
       </Navbar.Collapse>
     </Navbar>
+    {this.state.textBuscar.length!==0 && this.state.textBuscar[0]!==' ' ? 
+                //this.state.products.length   
+            <Container>
+              <h1>Listado de productos</h1>
+              <Row>           
+                  {this.state.products.map(elm => <ProductCard key={elm._id} {...elm}/>)}           
+              </Row>
+            </Container> 
+            : <></> }     
             
             
             </>
