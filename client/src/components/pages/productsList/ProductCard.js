@@ -8,10 +8,7 @@ class ProductCard extends Component {
             date:"",
             User:undefined
         }
-        this.days=''
-        this.hours=''
-        this.minutes=''
-        this.seconds = ''           
+                
     }
     componentDidMount() { 
         this.dateInterval= setInterval(() => {

@@ -61,15 +61,8 @@ componentDidMount = () =>{
     .getProducts()
     .then(response => this.setState({products: response.data,  productBackup: response.data}))
     .catch(err => this.setState({products: []})) 
-
-  this.Interval= setInterval(() => {
-      if(this.state.findText.length!==0){this.props.history.push('/productos-filtrados')}
-    }, 1000) 
   }
 
-componentWillUnmount() {
-  clearInterval(this.Interval)
-}
 
 
 filter(e){    
@@ -78,14 +71,16 @@ filter(e){
   const newData = data.filter(function(item){
       const itemDataTitle = item.title.toUpperCase()
       const itemDataDescp = item._id.toUpperCase()
-      const campo = itemDataTitle+" "+itemDataDescp
+      const field = itemDataTitle+" "+itemDataDescp
       const textData = text.toUpperCase()
-      return campo.indexOf(textData) > -1
+      return field.indexOf(textData) > -1
   })
   this.setState({
       products: newData,
       findText: text,
   })
+  this.props.history.push('/productos-filtrados')
+
 }
 
 

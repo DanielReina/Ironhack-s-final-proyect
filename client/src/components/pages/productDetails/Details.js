@@ -109,8 +109,18 @@ class Details extends Component {
 
         this.productService
             .currentBid(product_id, this.state)
-            .then(res =>this.props.fethcProduct()
-            )
+            .then(res =>this.props.fethcProduct())
+            .catch(err => console.log(err))
+    }
+
+
+    handleSubmit2 = e => {
+        e.preventDefault()
+        const product_id = this.props.match.params.product_id
+
+        this.productService
+            .adquiredBy(product_id, this.props.loggedUser._id)
+            .then(res =>console.log('producto comprado'))
             .catch(err => console.log(err))
     }
 
@@ -139,6 +149,9 @@ class Details extends Component {
                 <p>ID: {this.state.product._id}</p>
             </div> 
             <hr></hr> 
+            {this.state.User
+            ?
+            <>
             {this.state.product.salesMethod==='Subasta' ?
             <>
           
@@ -166,10 +179,20 @@ class Details extends Component {
             </>
             :
             <>
+            {this.state.product.acquiredBy ?            
+            <p>Producto vendido</p> 
+            :
+            <>
             <p>Precio: {this.state.product.initialPrice} €</p> 
+            <Form onSubmit={this.handleSubmit2}>
             <Button variant="dark" type="submit" >Comprar </Button>
+            </Form>
             </>
             }
+            </>
+            }</>
+            :
+            <p>Inicia sesión para más información</p>}
         </Col>
     </Row>
     }   
