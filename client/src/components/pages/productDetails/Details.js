@@ -89,7 +89,7 @@ class Details extends Component {
         }
 
     getTime(){
-        let dateTo =this.wrongDateFormat(`${this.props.productProps.timeLimit}`)
+      let dateTo = this.props.productProps ?  this.wrongDateFormat(`${this.props.productProps.timeLimit}`): null
         let now = new Date(),
             time = (new Date(dateTo) - now + 1000) / 1000,
             seconds = ('0' + Math.floor(time % 60)).slice(-2),

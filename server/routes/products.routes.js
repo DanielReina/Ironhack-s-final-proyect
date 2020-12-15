@@ -3,27 +3,25 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const User = require('./../models/user.model')
 const Product = require('./../models/product.model')
+const { checkId } = require('./middlewares.js')
 
 router.get('/', (req, res) => {
 
     Product
-        .find()
+        .find({}, {mainImage: 1, description: 1, title:1, salesMethod: 1, initialPrice: 1, category:1, timeLimit: 1, currentBid: 1, currentBidder:1, seller: 1})
         .then(response =>res.json(response))
         .catch(err => res.status(500).json(err))
 
 })
 
-router.get('/getOneProduct/:product_id', (req, res) => {
-    console.log(req.user)
-    if (!mongoose.Types.ObjectId.isValid(req.params.product_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
-
+router.get('/getOneProduct/:id', checkId,(req, res) => {
+ 
     Product
-    .findById(req.params.product_id)
-    .then(response =>res.json(response))
-    .catch(err => res.status(500).json(err))
+        .findById(req.params.id)
+        .then(response =>res.json(response))
+        .catch(err =>{
+            console.log(err)
+            res.status(500).json(err)})
 
 })
 
@@ -36,39 +34,39 @@ router.post('/newProduct', (req, res) =>{
 
 })
 
-router.put('/editProduct/:product_id', (req, res) => {
+router.put('/editProduct/:id', checkId,(req, res) => {
 
     Product
-        .findByIdAndUpdate(req.params.product_id, req.body)
+        .findByIdAndUpdate(req.params.id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 
-router.get('/productBySeller/:user_id', (req, res, next) => {
+router.get('/productBySeller/:id', checkId,(req, res) => {
     Product
-        .find({"seller": req.params.user_id})
+        .find({"seller": req.params.id})
         .then(response => res.json(response))
-        .catch(err => next(new Error(err)))
+        .catch(err => res.status(500).json(err))
 })
 
 
-router.delete('/deleteProduct/:product_Id', (req, res, next) => {
-    const productId = req.params.product_Id
-    console.log('aqui estoy', productId)
+router.delete('/deleteProduct/:id', checkId,(req, res) => {
+    const productId = req.params.id
+
     Product
         .findByIdAndDelete(productId)
         .then(response => res.json(response))
-        .catch(err => next(new Error(err)))
+        .catch(err => res.status(500).json(err))
 })
 
-router.put('/current-bid/:product_id', (req, res) => {
-  console.log(req.user)
+router.put('/current-bid/:id', checkId,(req, res) => {
+
     let data = req.body
   data.currentBidder = req.user._id
   
     Product
-        .findByIdAndUpdate(req.params.product_id, data)
+        .findByIdAndUpdate(req.params.id, data)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

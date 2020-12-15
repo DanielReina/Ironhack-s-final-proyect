@@ -44,7 +44,7 @@ class App extends Component {
     this.state = {
       loggedInUser: undefined,
       productBackup:[],
-      textBuscar:'',
+      findText:'',
       products: []
     }
     this.authServices = new AuthServices
@@ -63,12 +63,12 @@ componentDidMount = () =>{
     .catch(err => this.setState({products: []})) 
 
   this.Interval= setInterval(() => {
-      if(this.state.textBuscar.length!==0){this.props.history.push('/productos-filtrados')}
+      if(this.state.findText.length!==0){this.props.history.push('/productos-filtrados')}
     }, 1000) 
   }
 
 componentWillUnmount() {
-  clearInterval(this.dateInterval)
+  clearInterval(this.Interval)
 }
 
 
@@ -84,7 +84,7 @@ filter(e){
   })
   this.setState({
       products: newData,
-      textBuscar: text,
+      findText: text,
   })
 }
 
@@ -112,7 +112,7 @@ console.log('usuario', this.state.loggedInUser, 'producto', this.state.products 
         </Col>
         <Col  xs={11}>
       
-          {/* {this.state.textBuscar.length!==0 && this.state.products.length!==0 ? 
+          {/* {this.state.findText.length!==0 && this.state.products.length!==0 ? 
                  
             <Container>
               <h1>Listado de productos</h1>
@@ -123,7 +123,7 @@ console.log('usuario', this.state.loggedInUser, 'producto', this.state.products 
             : <></> }      */}
           <main> 
             <Switch>
-              <Route path="/productos-filtrados" exact render={() => <FilterList text={this.state.textBuscar} products={this.state.products} /> } />
+              <Route path="/productos-filtrados" exact render={() => <FilterList text={this.state.findText} products={this.state.products} /> } />
               <Route path="/" exact render={() => <Home/>} />
               <Route path="/inicio"  render={() => <StartPage storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />} />
               <Route path="/nuevo-producto"  render={props  => <ProductForm loggedUser={this.state.loggedInUser} {...props}/>} />
@@ -159,4 +159,4 @@ console.log('usuario', this.state.loggedInUser, 'producto', this.state.products 
 
 export default withRouter(App);
 
-// {this.state.textBuscar.length!=0 && (this.state.textBuscar[0]!=' '|| this.state.length===0)? 
+// {this.state.findText.length!=0 && (this.state.findText[0]!=' '|| this.state.length===0)? 

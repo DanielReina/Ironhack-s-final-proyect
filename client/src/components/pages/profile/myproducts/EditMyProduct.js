@@ -15,7 +15,7 @@ class EditMyProduct extends Component {
             timeLimit: '',
             detailsImages: '', 
             salesMethod: '',
-            prueba:false
+
            
            
         }
@@ -66,7 +66,7 @@ class EditMyProduct extends Component {
             .catch(err => console.log(err))
     }
 
-    submit (){this.setState({prueba: true})}
+   
 
     render() {
      
@@ -120,7 +120,7 @@ class EditMyProduct extends Component {
                         <Form.Label>Imágenes extras</Form.Label>
                         <Form.Control type="text" name="detailsImages" value={this.state.detailsImages} onChange={this.handleInputChange} />
                     </Form.Group> */}
-                    <Button variant="dark" type="submit" onClick={()=>this.submit()} >Guardar edición </Button>
+                    <Button variant="dark" type="submit"  >Guardar edición </Button>
      
                 </Form>
             </>
