@@ -1,6 +1,7 @@
 import { Col, Container, Row, Button, Form } from 'react-bootstrap'
 import React, { Component } from 'react'
 import ProductService from '../../../service/products.service'
+import UserService from '../../../service/User.service'
 
 
 class Details extends Component { 
@@ -10,16 +11,30 @@ class Details extends Component {
             date:"",
             User:undefined,
             product: undefined,
-            currentBid: '',        
+            currentBid: '', 
+            CurrentBidder: ''       
         }
-        this.productService = new ProductService()    
+        this.productService = new ProductService()
+        this.userService = new UserService()     
     }
     componentDidMount() {        
         this.dateInterval= setInterval(() => {
+            if(this.props.productProps !== undefined && this.props.productProps.currentBidder !== undefined ){
+                this.userService
+                .getOneUser(this.props.productProps.currentBidder)
+                .then(res =>this.setState({ CurrentBidder: res.data }))
+                .catch(err => console.log(err))}
+                else{
+                    this.setState({ CurrentBidder: 'Nadie ha pujado por este producto' })
+                }
             this.setState({date:this.getTime(),  User:this.props.loggedUser, product:this.props.productProps})
-        }, 1000) 
+        }, 1000)
+
+      
+    
     }
-    componentWillUnmount() {
+    
+    componentWillUnmount(){
         clearInterval(this.dateInterval)
     }
     wrongDateFormat(string){
@@ -82,7 +97,7 @@ class Details extends Component {
             hours = ('0' + Math.floor(time / 3600 % 24)).slice(-2),
             days = Math.floor(time / (3600 * 24));  
         if( Math.sign(seconds) ===-1 || Math.sign(minutes) ===-1 || Math.sign(hours) ===-1 || Math.sign(days) ===-1){
-            return (`Fuera de subasta, alcanzada la fecha límite`)
+            return (`Fuera de subasta, alcanzada la fecha límite.`)
         }else{
         return (`${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`)
         }   
@@ -104,9 +119,7 @@ class Details extends Component {
 
 
  
-    render() {
-      console.log('en details', this.props)
-      if(this.props.productProps){console.log('el producto',this.props.productProps.currentBid, 'el user', this.props.match.params.product_id, 'las props', this.props)}
+    render() {      
     return (
     <Container>
      {this.state.product && 
@@ -131,9 +144,9 @@ class Details extends Component {
           
                 <p>Finaliza en: {this.state.date}</p>
 
-                {this.state.date===`Fuera de subasta, alcanzada la fecha límite` ?
+                {this.state.date===`Fuera de subasta, alcanzada la fecha límite.` ?
                 <>{this.state.product.currentBidder===undefined ? <p>Nadie adquirió el producto de precio inicial {this.state.product.initialPrice} €</p>: 
-            <p>pepe adquirió el producto por un precio de {this.state.product.currentBid} € </p>}</>
+            <p>{this.state.CurrentBidder.username} adquirió el producto por un precio de {this.state.product.currentBid} € </p>}</>
                     :
                     <>
                 <p>Precio de salida: {this.state.product.initialPrice} €</p>
