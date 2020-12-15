@@ -45,7 +45,7 @@ const productSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    AcquiredBy: {
+    acquiredBy: {
         type: Schema.Types.ObjectId,
         ref: 'User',
        

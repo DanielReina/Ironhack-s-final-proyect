@@ -8,7 +8,7 @@ const { checkId } = require('./middlewares.js')
 router.get('/', (req, res) => {
 
     Product
-        .find({}, {mainImage: 1, description: 1, title:1, salesMethod: 1, initialPrice: 1, category:1, timeLimit: 1, currentBid: 1, currentBidder:1, seller: 1})
+        .find({}, {mainImage: 1, description: 1, title:1, salesMethod: 1, initialPrice: 1, category:1, timeLimit: 1, currentBid: 1, currentBidder:1, seller: 1, acquiredBy: 1})
         .then(response =>res.json(response))
         .catch(err => res.status(500).json(err))
 
@@ -67,6 +67,14 @@ router.put('/current-bid/:id', checkId,(req, res) => {
   
     Product
         .findByIdAndUpdate(req.params.id, data)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+router.put('/adquired-product/:id', checkId,(req, res) => {
+  
+    Product
+        .findByIdAndUpdate(req.params.id,{acquiredBy: req.user._id})            
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
