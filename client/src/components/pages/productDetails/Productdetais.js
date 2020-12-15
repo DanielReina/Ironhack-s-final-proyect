@@ -13,21 +13,26 @@ class ProductDetails extends Component {
         this.productService = new ProductService()
     }
 
-    componentDidMount = () => {
+    componentDidMount = () => this.fetchProduct()
 
-        const product_id = this.props.match.params.product_id
+     
 
-        this.productService
-            .getOneProduct(product_id)
-            .then(res => this.setState({ product: res.data }))
-            .catch(err => console.log(err))
-    }
+    
+fetchProduct=()=>{
+    const product_id = this.props.match.params.product_id
+
+    this.productService
+        .getOneProduct(product_id)
+        .then(res => this.setState({ product: res.data }))
+        .catch(err => console.log(err))
+}
+
 
     render() {
-
+ 
         return (
             <>
-                <Details productProps ={this.state.product} loggedUser={this.props.loggedUser} match={this.props.match} />
+                <Details productProps ={this.state.product} loggedUser={this.props.loggedUser} match={this.props.match} history={this.props.history} fetchProduct={this.fetchProduct} />
             </>
         )
     }

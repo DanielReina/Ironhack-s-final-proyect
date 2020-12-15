@@ -92,7 +92,7 @@ filter(e){
 setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El nuevo estado de App es:', this.state))
 
 render() {
-console.log('estoy en app', this.props)
+console.log('usuario', this.state.loggedInUser, 'producto', this.state.products )
   return (
     <>
 {/* <HeaderNavbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} /> */}

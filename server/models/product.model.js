@@ -37,6 +37,10 @@ const productSchema = new Schema({
         type: Number,
         default: 0,
     },
+    currentBidder: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
     seller: {
         type: Schema.Types.ObjectId,
         ref: 'User'

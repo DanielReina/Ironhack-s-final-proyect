@@ -16,6 +16,8 @@ class ProductService {
     saveProduct = ProductsInfo => this.apiHandler.post(`/newProduct`, ProductsInfo)
     editProduct = (productId, productInfo) => this.apiHandler.put(`/editProduct/${productId}`, productInfo)
     deleteProduct = productId => this.apiHandler.delete(`/deleteProduct/${productId}`);
+    currentBid = (productId, productInfo)=> this.apiHandler.put(`/current-bid/${productId}`, productInfo)
+
 }
 
 export default ProductService

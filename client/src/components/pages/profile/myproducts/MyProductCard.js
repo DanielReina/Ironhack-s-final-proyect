@@ -97,7 +97,7 @@ class MyProductCard extends Component {
       this.productService     
         .deleteProduct(id) 
         .then (() =>{ 
-            console.log('holaaaaaa', this.props.history)
+           
            this.props.fetch()})
         .catch(err => console.log({ err }))
     }

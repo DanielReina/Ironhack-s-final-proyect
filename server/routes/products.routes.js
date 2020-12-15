@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-
+const User = require('./../models/user.model')
 const Product = require('./../models/product.model')
 
 router.get('/', (req, res) => {
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/getOneProduct/:product_id', (req, res) => {
-
+    console.log(req.user)
     if (!mongoose.Types.ObjectId.isValid(req.params.product_id)) {
         res.status(404).json({ message: 'Invalid ID' })
         return
@@ -62,7 +62,16 @@ router.delete('/deleteProduct/:product_Id', (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 
-
+router.put('/current-bid/:product_id', (req, res) => {
+  console.log(req.user)
+    let data = req.body
+  data.currentBidder = req.user._id
+  
+    Product
+        .findByIdAndUpdate(req.params.product_id, data)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
 
 
 

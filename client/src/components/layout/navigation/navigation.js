@@ -35,7 +35,7 @@ class Navigation extends Component {
             <NavDropdown title="Subastas" id="nav-dropdown">
                  <Link to='/subastas'>Todos los productos</Link>
                
-                    <NavDropdown title="Por categorías" id="nav-dropdown">
+                    <NavDropdown title="Por categorías" id="nav-dropdown">                 
                     <Link to='/subastas-relojes'>Relojes</Link>
                     <NavDropdown.Divider />
                     <Link to='/subastas-joyas'>Joyas</Link>

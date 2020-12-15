@@ -10,8 +10,7 @@ class Details extends Component {
             date:"",
             User:undefined,
             product: undefined,
-            currentBid: '',
-            prueba:false
+            currentBid: '',        
         }
         this.productService = new ProductService()    
     }
@@ -83,7 +82,7 @@ class Details extends Component {
             hours = ('0' + Math.floor(time / 3600 % 24)).slice(-2),
             days = Math.floor(time / (3600 * 24));  
         if( Math.sign(seconds) ===-1 || Math.sign(minutes) ===-1 || Math.sign(hours) ===-1 || Math.sign(days) ===-1){
-            return (`Dejó de estar a la venta en ${dateTo}`)
+            return (`Fuera de subasta, alcanzada la fecha límite`)
         }else{
         return (`${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos`)
         }   
@@ -94,18 +93,20 @@ class Details extends Component {
         const product_id = this.props.match.params.product_id
 
         this.productService
-            .editProduct(product_id, this.props.productProps.currentBid)
-            .then(res =>this.props.history.push({pathname: ('/inicio')})
+            .currentBid(product_id, this.state)
+            .then(res =>this.props.fethcProduct()
             )
             .catch(err => console.log(err))
     }
 
     handleInputChange = e => this.setState({ currentBid: e.target.value })
-    submit (){this.setState({prueba: true})}
+
+
 
  
     render() {
-      if(this.props.productProps){console.log('el producto',this.props.productProps.currentBid, 'el user', this.props.match.params.product_id, 'el Id', this.props.match.params.product_id)}
+      console.log('en details', this.props)
+      if(this.props.productProps){console.log('el producto',this.props.productProps.currentBid, 'el user', this.props.match.params.product_id, 'las props', this.props)}
     return (
     <Container>
      {this.state.product && 
@@ -127,12 +128,18 @@ class Details extends Component {
             <hr></hr> 
             {this.state.product.salesMethod==='Subasta' ?
             <>
-            <div>
+          
                 <p>Finaliza en: {this.state.date}</p>
+
+                {this.state.date===`Fuera de subasta, alcanzada la fecha límite` ?
+                <>{this.state.product.currentBidder===undefined ? <p>Nadie adquirió el producto de precio inicial {this.state.product.initialPrice} €</p>: 
+            <p>pepe adquirió el producto por un precio de {this.state.product.currentBid} € </p>}</>
+                    :
+                    <>
                 <p>Precio de salida: {this.state.product.initialPrice} €</p>
-                <p>Puja actual: </p>
-                <p>Número de pujas: </p>
-            </div> 
+                <p>Puja actual: {this.state.product.currentBid}</p>
+              
+       
             <hr></hr> 
          
             <Form onSubmit={this.handleSubmit}>
@@ -140,11 +147,13 @@ class Details extends Component {
                     <Form.Label>Haga su puja</Form.Label>
                     <Form.Control type="number" name="currentBid" value={this.state.currentBid} onChange={this.handleInputChange} />
                 </Form.Group>
-                <Button variant="dark" type="submit" onClick={()=>this.submit()} >Pujar </Button>
+                <Button variant="dark" type="submit">Pujar </Button>
             </Form>
-            </>:
+            </>}
+            </>
+            :
             <>
-            <p>Precio : {this.state.product.initialPrice} €</p> 
+            <p>Precio: {this.state.product.initialPrice} €</p> 
             <Button variant="dark" type="submit" >Comprar </Button>
             </>
             }
