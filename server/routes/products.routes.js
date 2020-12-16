@@ -75,12 +75,12 @@ router.put('/current-bid/:id', checkId,(req, res) => {
     return
     }else if
         (data.currentBid<= response.currentBid)
-        {res.json({ message: 'La puja debe ser mayor que el la puja anterior'})
+        {res.json({ message: 'La puja debe ser mayor que la puja anterior'})
     return
     }else{  
         console.log('despues del else',data)
         Product
-        .findByIdAndUpdate(req.params.id, {"currentBid": data.currentBid})
+        .findByIdAndUpdate(req.params.id, data)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
         }
@@ -103,7 +103,7 @@ router.put('/adquired-product/:id', checkId,(req, res) => {
 router.get('/won-bids', (req, res) => {
     let userId=req.user._id
     Product
-        // .find({currentBidder: userId} )
+ 
         .find({ $or: [{ $and: [{ timeLimit: { $lte: Date.now() } }, { currentBidder:userId }]}, { acquiredBy:userId }] })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))

@@ -12,7 +12,8 @@ class Details extends Component {
             User:undefined,
             product: undefined,
             currentBid: '', 
-            CurrentBidder: ''       
+            CurrentBidder: '',
+            message:''       
         }
         this.productService = new ProductService()
         this.userService = new UserService()     
@@ -109,7 +110,8 @@ class Details extends Component {
 
         this.productService
             .currentBid(product_id, this.state)
-            .then(res =>this.props.fetchProduct())
+            .then(res =>{res.data.message ? this.setState({message: res.data.message}) : this.setState({message: ''})
+                this.props.fetchProduct()})
             .catch(err => console.log(err))
     }
 
@@ -129,7 +131,8 @@ class Details extends Component {
 
 
  
-    render() {      
+    render() { 
+        console.log('locoo', this.state.message)     
     return (
     <Container>
      {this.state.product && 
@@ -175,6 +178,8 @@ class Details extends Component {
                 </Form.Group>
                 <Button variant="dark" type="submit">Pujar </Button>
             </Form>
+            <hr></hr> 
+            {this.state.message.lenght!==0 && <p>{this.state.message} </p>}
             </>}
             </>
             :
