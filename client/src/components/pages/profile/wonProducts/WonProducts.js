@@ -34,13 +34,13 @@ class Wonproducts extends Component {
       if (!prevProps.loggedUser && this.props.loggedUser) 
       {this.productService
         .wondBids()
-        .then(res => this.setState({myProducts: res.data}))
+        .then(res => this.setState({myWonProducts: res.data}))
         .catch(err => console.log(err))
     }}
     
     
         render(){
-            console.log('en won products', this.state.myWonProducts)
+          
         return (
           <Container>
           <h1>Listado de productos</h1>

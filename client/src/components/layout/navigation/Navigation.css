@@ -1,4 +1,21 @@
 .navigation{
+
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 /* position: fixed; */
-/* background-color: red; */
+ /* background-color: #242d56;  */
+}
+
+.nav-link{
+    color: #242d56;
+}
+.link{
+    font-style: none;
+    color: #242d56;
+}
+.link-to-perfil{
+    margin-left:15px;
+    color:#242d56;
 }

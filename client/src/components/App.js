@@ -1,10 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
-import { Container, Row, Col, Navbar, FormControl,Form} from 'react-bootstrap'
+import { Container, Row, Col, Navbar, FormControl,Form, Nav, NavDropdown} from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-
 import logo from './layout/headerNavbar/misubastas.jpeg'
 import Home from './pages/home/home'
 import StartPage from './pages/startPage/StartPage'
@@ -88,25 +87,28 @@ filter(e){
 setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El nuevo estado de App es:', this.state))
 
 render() {
-console.log('usuario', this.state.loggedInUser, 'producto', this.state.products )
+
   return (
     <>
 {/* <HeaderNavbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} /> */}
-    <Navbar id='HNavbar' bg="dark" expand="lg" variant="dark" >
-      <Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo}  className="d-inline-block align-top" style={{ width: '30px' }}/>Portada</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">      
-          <Form inline>
-          <FormControl type="text" value={this.state.text} placeholder="Buscar producto" className="ml-auto" onChange={(text) => this.filter(text)} />
-          </Form>
-      </Navbar.Collapse>
-    </Navbar>
+<Navbar   expand="lg">
+<Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo}   style={{ width: '60px' }}/></Navbar.Brand>
+
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">      
+    </Nav>
+    <Form inline>
+      <FormControl type="text" placeholder="Search" value={this.state.text}  className="mr-sm-2" onChange={(text) => this.filter(text)}/>
+ 
+    </Form>
+  </Navbar.Collapse>
+</Navbar>
     <Container fluid>
       <Row>
-        <Col xs={1}>
+        <Col xs={2}>
           <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
         </Col>
-        <Col  xs={11}>
+        <Col  xs={10}>
       
           {/* {this.state.findText.length!==0 && this.state.products.length!==0 ? 
                  
@@ -148,7 +150,7 @@ console.log('usuario', this.state.loggedInUser, 'producto', this.state.products 
         </Col>
       </Row>
     </Container>
-  
+    <footer>producto de </footer>
     </>
     )
   }
@@ -156,4 +158,3 @@ console.log('usuario', this.state.loggedInUser, 'producto', this.state.products 
 
 export default withRouter(App);
 
-// {this.state.findText.length!=0 && (this.state.findText[0]!=' '|| this.state.length===0)? 

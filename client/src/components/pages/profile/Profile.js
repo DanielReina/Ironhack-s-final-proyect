@@ -18,16 +18,12 @@ class Profile extends Component {
             <Link to='/mis-datos'>Mis datos</Link>
             </Col>          
             <hr />
-            <h2>Mis subastas</h2>
+            <h2>Mis adquisiciones</h2>
+           
             <Col>
-            <Link to='#'>En puja</Link>
+            <Link to='/productos-adquiridos'>Productos-adquiridos</Link>
             </Col>
-            <Col>
-            <Link to='/productos-adquiridos'>Ganadas</Link>
-            </Col>
-            <Col>
-            <Link to='#'>No ganadas</Link>
-            </Col>
+            
             <hr />
             <h2>Mis productos</h2>
             <Col>

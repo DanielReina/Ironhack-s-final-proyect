@@ -6,4 +6,6 @@
 
 .carousel{
     width: 500px;
+    object-fit: cover;
+    height: 300px;
 }

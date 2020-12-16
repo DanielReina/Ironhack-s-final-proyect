@@ -30,45 +30,45 @@ class Navigation extends Component {
 
         <Nav className='navigation' >                        
             <Nav.Item>
-                <Nav.Link href="/inicio">Inicio</Nav.Link>
+                <Nav.Link  href="/inicio">Inicio </Nav.Link>
             </Nav.Item>
             <NavDropdown title="Subastas" id="nav-dropdown">
-                 <Link to='/subastas'>Todos los productos</Link>
+                 <Link className='link' to='/subastas'>Todos los productos</Link>
                
                     <NavDropdown title="Por categorías" id="nav-dropdown">                 
-                    <Link to='/subastas-relojes'>Relojes</Link>
+                    <Link className='link' to='/subastas-relojes'>Relojes</Link>
                     <NavDropdown.Divider />
-                    <Link to='/subastas-joyas'>Joyas</Link>
+                    <Link className='link' to='/subastas-joyas'>Joyas</Link>
                     <NavDropdown.Divider />
-                    <Link to='/subastas-arte'>Arte</Link>
+                    <Link className='link' to='/subastas-arte'>Arte</Link>
                     <NavDropdown.Divider />
-                    <Link to='/subastas-otros'>Otros</Link>
+                    <Link className='link' to='/subastas-otros'>Otros</Link>
                     </NavDropdown>
               
             </NavDropdown>
             <NavDropdown title="Venta directa" id="nav-dropdown">
-                 <Link to='/venta-directa'>Todos los productos</Link>
+                 <Link className='link' to='/venta-directa'>Todos los productos</Link>
                
                     <NavDropdown title="Por categorías" id="nav-dropdown">
-                    <Link to='/vd-relojes'>Relojes</Link>
+                    <Link className='link' to='/vd-relojes'>Relojes</Link>
                     <NavDropdown.Divider />
-                    <Link to='/vd-joyas'>Joyas</Link>
+                    <Link className='link' to='/vd-joyas'>Joyas</Link>
                     <NavDropdown.Divider />
-                    <Link to='/vd-arte'>Arte</Link>
+                    <Link className='link' to='/vd-arte'>Arte</Link>
                     <NavDropdown.Divider />
-                    <Link to='/vd-otros'>Otros</Link>
+                    <Link className='link' to='/vd-otros'>Otros</Link>
                     </NavDropdown>
               
             </NavDropdown>
 
 
             
-            <Nav.Item>          
-            <Link to='/perfil'>Mi perfil</Link>
-            </Nav.Item>
+                 
+            <Link className='link-to-perfil' to='/perfil'>Mi perfil</Link>
+         
             {
                 this.props.loggedUser ? 
-                <Nav.Link as='button' onClick={this.logOut} >Cerrar sesión</Nav.Link> :
+                <Nav.Link  onClick={this.logOut} >Cerrar sesión</Nav.Link> :
               <>  
                 <Nav.Item>
                 
