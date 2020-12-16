@@ -1,21 +1,26 @@
 .navigation{
-
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 /* position: fixed; */
- /* background-color: #242d56;  */
+ background-color: #242d56; 
+ flex-direction: column;
+ justify-content: space-around;
+ height: 500px;
+ align-items: flex-start;
+ border-bottom-right-radius: 20px 20px;
+ 
+
 }
 
 .nav-link{
-    color: #242d56;
+    color: #d7b373;
 }
 .link{
-    font-style: none;
-    color: #242d56;
+ 
+    color:#d7b373;
 }
 .link-to-perfil{
     margin-left:15px;
-    color:#242d56;
+    color: #d7b373;
+}
+#nav-dropdown2{
+    color: #242d56 !important; 
 }

@@ -92,23 +92,24 @@ render() {
     <>
 {/* <HeaderNavbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} /> */}
 <Navbar   expand="lg">
-<Navbar.Brand href="/" className="ml-auto"> <img alt="Logotipo" src={logo}   style={{ width: '60px' }}/></Navbar.Brand>
+<Navbar.Brand href="/" xs className="ml-auto" id='mis-subastas' > <h1>Mis Subastas</h1> </Navbar.Brand>
 
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">      
+  <Navbar.Collapse xs id="basic-navbar-nav">
+    <Nav className="mr-auto"> 
+      
     </Nav>
     <Form inline>
-      <FormControl type="text" placeholder="Search" value={this.state.text}  className="mr-sm-2" onChange={(text) => this.filter(text)}/>
+      <FormControl type="text" placeholder="Buscar Productos..." value={this.state.text}  className="mr-sm-2" onChange={(text) => this.filter(text)}/>
  
     </Form>
   </Navbar.Collapse>
 </Navbar>
     <Container fluid>
       <Row>
-        <Col xs={2}>
+        <Col id='navig' sm={1}>
           <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
         </Col>
-        <Col  xs={10}>
+        <Col  md={11}>
       
           {/* {this.state.findText.length!==0 && this.state.products.length!==0 ? 
                  
@@ -150,7 +151,9 @@ render() {
         </Col>
       </Row>
     </Container>
-    <footer>producto de </footer>
+    <footer>
+    <p>Producto realizado por: Daniel Reina Ramos, 2020</p>
+    </footer>
     </>
     )
   }

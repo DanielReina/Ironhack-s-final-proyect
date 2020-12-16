@@ -1,0 +1,28 @@
+.home{
+    padding-top: 50px;
+    display: flex;
+    padding-bottom: 100px;    
+    flex-direction: column;
+    align-items: center;
+
+ 
+}
+
+.home h1{
+    font-family: 'Crimson Pro', serif;
+    font-size: 70px;
+}
+.home span{
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.home p{
+    margin-top: 50px;
+    font-family: 'Crimson Pro', serif;
+    font-size: 30px;
+}
+.home img{
+    margin-top: 100px;
+    width: 300px;
+    border-radius: 10%;
+}

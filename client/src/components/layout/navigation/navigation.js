@@ -33,16 +33,16 @@ class Navigation extends Component {
                 <Nav.Link  href="/inicio">Inicio </Nav.Link>
             </Nav.Item>
             <NavDropdown title="Subastas" id="nav-dropdown">
-                 <Link className='link' to='/subastas'>Todos los productos</Link>
+                 <Link id='nav-dropdown2' to='/subastas'>Todos los productos</Link>
                
-                    <NavDropdown title="Por categorías" id="nav-dropdown">                 
-                    <Link className='link' to='/subastas-relojes'>Relojes</Link>
+                    <NavDropdown title="Por categorías" id='nav-dropdown2'>                 
+                    <Link id='nav-dropdown2' to='/subastas-relojes'>Relojes</Link>
                     <NavDropdown.Divider />
-                    <Link className='link' to='/subastas-joyas'>Joyas</Link>
+                    <Link id='nav-dropdown2' to='/subastas-joyas'>Joyas</Link>
                     <NavDropdown.Divider />
-                    <Link className='link' to='/subastas-arte'>Arte</Link>
+                    <Link id='nav-dropdown2' to='/subastas-arte'>Arte</Link>
                     <NavDropdown.Divider />
-                    <Link className='link' to='/subastas-otros'>Otros</Link>
+                    <Link id='nav-dropdown2' to='/subastas-otros'>Otros</Link>
                     </NavDropdown>
               
             </NavDropdown>
