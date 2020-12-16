@@ -60,16 +60,35 @@ router.delete('/deleteProduct/:id', checkId,(req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
+
 router.put('/current-bid/:id', checkId,(req, res) => {
 
-    let data = req.body
+  let data = req.body
   data.currentBidder = req.user._id
-  
-    Product
-        .findByIdAndUpdate(req.params.id, data)
+  console.log(data)
+
+  Product
+  .findById(req.params.id)
+  .then(response => { console.log('antes del else',data)
+  if(data.currentBid<=response.initialPrice)
+        {res.json({ message: 'La puja debe ser mayor que el precio inicial'})
+    return
+    }else if
+        (data.currentBid<= response.currentBid)
+        {res.json({ message: 'La puja debe ser mayor que el la puja anterior'})
+    return
+    }else{  
+        console.log('despues del else',data)
+        Product
+        .findByIdAndUpdate(req.params.id, {"currentBid": data.currentBid})
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
+        }
+   })
+  .catch(err => res.status(500).json(err))
 })
+
+
 
 router.put('/adquired-product/:id', checkId,(req, res) => {
   
@@ -81,4 +100,59 @@ router.put('/adquired-product/:id', checkId,(req, res) => {
 
 
 
+router.get('/won-bids', (req, res) => {
+    let userId=req.user._id
+    Product
+        // .find({currentBidder: userId} )
+        .find({ $or: [{ $and: [{ timeLimit: { $lte: Date.now() } }, { currentBidder:userId }]}, { acquiredBy:userId }] })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+
+
+
 module.exports = router
+
+
+
+
+// router.put('/current-bid/:id', checkId,(req, res) => {
+
+//   let data = req.body
+//   data.currentBidder = req.user._id
+//   console.log(data)
+
+//   Product
+//   .findById(req.params.id)
+//   .then(response => {
+//   if(data.product.currentBid<=response.initialPrice)
+//         {res.json({ message: 'La puja debe ser mayor que el precio inicial'})
+//     return
+//     }else if
+//         (data.product.currentBid<= response.currentBid)
+//         {res.json({ message: 'La puja debe ser mayor que el la puja anterior'})
+//     return
+//     }else{  
+//         Product
+//             .findByIdAndUpdate(req.params.id, data.product)
+//             .then(response => res.json(response))
+//             .catch(err => res.status(500).json(err))
+//         }
+//    })
+//   .catch(err => res.status(500).json(err))
+// })
+
+
+
+
+// router.put('/current-bid/:id', checkId,(req, res) => {
+
+//     let data = req.body
+//   data.currentBidder = req.user._id
+
+//     Product
+//         .findByIdAndUpdate(req.params.id, data)
+//         .then(response => res.json(response))
+//         .catch(err => res.status(500).json(err))
+// })

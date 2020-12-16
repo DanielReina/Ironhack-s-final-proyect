@@ -34,6 +34,7 @@ import OtherDS from './pages/directsale/OtherDS';
 import JewelryDS from './pages/directsale/JewelryDS';
 import HeaderNavbar from './layout/headerNavbar/HeaderNavbar'
 import FilterList from './pages/productsList/FilterList'
+import Wonproducts from './pages/profile/wonProducts/WonProducts'
 import {withRouter} from 'react-router'
 
 
@@ -141,6 +142,7 @@ console.log('usuario', this.state.loggedInUser, 'producto', this.state.products 
               <Route path="/vd-relojes" exact render={props => <WatchDS {...props} loggedUser={this.state.loggedInUser} />} />
               <Route path="/vd-otros" exact render={props => <OtherDS {...props} loggedUser={this.state.loggedInUser} />} />
               <Route path="/vd-joyas" exact render={props => <JewelryDS {...props} loggedUser={this.state.loggedInUser} />} />
+              <Route path="/productos-adquiridos" exact render={props => <Wonproducts {...props} loggedUser={this.state.loggedInUser} />} />
             </Switch>
           </main>
         </Col>

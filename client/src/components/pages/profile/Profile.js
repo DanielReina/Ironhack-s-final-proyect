@@ -23,7 +23,7 @@ class Profile extends Component {
             <Link to='#'>En puja</Link>
             </Col>
             <Col>
-            <Link to='#'>Ganadas</Link>
+            <Link to='/productos-adquiridos'>Ganadas</Link>
             </Col>
             <Col>
             <Link to='#'>No ganadas</Link>

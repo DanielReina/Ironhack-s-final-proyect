@@ -109,7 +109,7 @@ class Details extends Component {
 
         this.productService
             .currentBid(product_id, this.state)
-            .then(res =>this.props.fethcProduct())
+            .then(res =>this.props.fetchProduct())
             .catch(err => console.log(err))
     }
 
@@ -120,7 +120,7 @@ class Details extends Component {
 
         this.productService
             .adquiredBy(product_id, this.props.loggedUser._id)
-            .then(res =>console.log('producto comprado'))
+            .then(res =>this.props.fetchProduct())
             .catch(err => console.log(err))
     }
 

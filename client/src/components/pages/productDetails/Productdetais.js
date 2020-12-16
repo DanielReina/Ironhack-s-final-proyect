@@ -29,7 +29,7 @@ fetchProduct=()=>{
 
 
     render() {
- 
+ console.log('produtdetails', this.state.product)
         return (
             <>
                 <Details productProps ={this.state.product} loggedUser={this.props.loggedUser} match={this.props.match} history={this.props.history} fetchProduct={this.fetchProduct} />
