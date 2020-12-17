@@ -1,0 +1,10 @@
+.start-page{
+    border: solid 1px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Crimson Pro', serif;
+    flex-direction: column;
+    color: #242d56;
+
+}

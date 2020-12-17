@@ -19,7 +19,10 @@ export default function ControlledCarousel() {
             src="https://concepto.de/wp-content/uploads/2018/02/artes-plasticas-cuadro-min-e1519328319772.jpg"
             alt="First slide"
             style={{width: 50}}
-          />      
+          /> 
+            <Carousel.Caption>
+          <h3 className='arte'>Arte</h3>    
+        </Carousel.Caption>     
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -28,7 +31,10 @@ export default function ControlledCarousel() {
             src='https://www.consumer.es/wp-content/uploads/2020/01/anillo-amatista-brillantes.jpg'          
             alt="Second slide"
             style={{width: 50}}
-          />       
+          />   
+              <Carousel.Caption>
+          <h3 className='joyas'>Joyas</h3>    
+        </Carousel.Caption>       
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -37,7 +43,10 @@ export default function ControlledCarousel() {
             src="https://ep01.epimg.net/elpais/imagenes/2018/05/21/album/1526910442_466493_1528796035_noticia_normal.jpg"
             alt="Third slide"
             style={{width: 50}}
-          />      
+          /> 
+               <Carousel.Caption>
+          <h3 className='relojes' >Relojes</h3>    
+        </Carousel.Caption>       
         </Carousel.Item>
       </Carousel>
       </div>
