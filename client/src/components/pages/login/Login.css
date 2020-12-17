@@ -1,0 +1,23 @@
+.login{
+    margin-top: 50px;
+    font-family: 'Crimson Pro', serif;
+    border: solid 1px;
+    padding:20px;
+    color:#d7b373; 
+    background-color:#242d56;  
+    border-radius: 10px 10px;
+    margin-bottom: 50px;
+}
+
+.login button{
+    background-color:#d7b373; 
+    color:#242d56;  
+    border-radius: 10px 10px;
+    border: 5px
+}
+
+.login p{
+   
+    color:white;
+    font-size: 20px;
+}

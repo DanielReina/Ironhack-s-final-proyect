@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AuthService from './../../../service/auth.service'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import './signup.css'
 
 class Signup extends Component {
 
@@ -42,32 +43,34 @@ class Signup extends Component {
 
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
+                    <div className='signup'>
                         <h1>Registro de usuario</h1>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
-                                <Form.Label>Usuario</Form.Label>
+                                <Form.Label><p>Usuario</p></Form.Label>
                                 <Form.Control type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="password">
-                                <Form.Label>Contraseña</Form.Label>
+                                <Form.Label><p>Contraseña</p></Form.Label>
                                 <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="name">
-                                <Form.Label>Nombre</Form.Label>
+                                <Form.Label><p>Nombre</p></Form.Label>
                                 <Form.Control type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="lastName">
-                                <Form.Label>Apellidos</Form.Label>
+                                <Form.Label><p>Apellidos</p></Form.Label>
                                 <Form.Control type="text" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="email">
-                                <Form.Label>Correo electrónico</Form.Label>
+                                <Form.Label><p>Correo electrónico</p></Form.Label>
                                 <Form.Control type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
                             </Form.Group>
                             
-                            <Button variant="dark" type="submit">Registrarme</Button>
+                            <button  type="submit">Registrarme</button>                          
                         </Form>
+                        </div>
                     </Col>
                 </Row>
             </Container>

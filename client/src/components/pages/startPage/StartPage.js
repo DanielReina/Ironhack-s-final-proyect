@@ -33,18 +33,18 @@ class StartPage extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col  md={{span:4}}>
+                    <Col  md={{span:4, offset: 1}}>
                         <div className='start-page'>
-                            <h2>Venta directa</h2>
-                            <hb></hb>                       
-                            <Link to='/venta-directa'><p>Para vender y comprar, sin mas complicaciones.</p> </Link>
+                        <Link to='/venta-directa'><h2>Venta directa</h2></Link>
+                                             
+                           <p>Todos nuestros productos en venta actualmente</p> 
                         </div>            
                     </Col>
                     <Col  md={{span:4,  offset: 2}}>           
                     <div className='start-page'>
-                            <h2>Subastas</h2>
-                            <hb></hb>  
-                            <Link to='/subastas'><p>Pon tu producto a subastar o puja por el producto deseado.</p></Link>
+                    <Link to='/subastas'><h2>Subastas</h2></Link>
+                   
+                           <p>Productos en subasta añadidos recientemente</p>
                         </div>
                     </Col>
 
@@ -53,30 +53,30 @@ class StartPage extends Component {
                 {
                 this.props.loggedUser ? 
 
-                <Col  md={{span:6}}>
+                <Col   md={{span:4, offset: 1}}>
                 <div className='start-page'>
                           
                   
-                            <Button  onClick={this.logOut} ><p>Cerrar sesión</p></Button>
+                            <button onClick={this.logOut} ><h2>Cerrar sesión</h2></button>
                         </div>            
                     </Col>
                     :
                
            
-              <Col  md={{span:6}}>
+              <Col  md={{span:4, offset: 1}}>
               <div className='start-page'>
-                            <Link to='/iniciar-sesion'>Iniciar sesión</Link>
+                            <Link to='/iniciar-sesion'><h2>Iniciar sesión</h2></Link>
                         </div>            
                     </Col>
              
 
             }
                    
-                    <Col  md={{span:6}}>           
+                    <Col   md={{span:4, offset: 2}}>           
                     <div className='start-page'>
-                            <h2>Mi Perfil</h2>
-                            <hb></hb>  
-                            <Link to='/perfil'><p>Para gestionar y consultar tus datos, tus productos y tus adquisiciones</p></Link>
+                    <Link to='/perfil'><h2>Mi Perfil</h2></Link>
+                 
+                           <p>Para gestionar y consultar tus datos, tus productos y tus adquisiciones</p>
                         </div>
                     </Col>
                 </Row>

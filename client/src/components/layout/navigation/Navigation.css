@@ -1,12 +1,12 @@
 .navigation{
 /* position: fixed; */
- background-color: #242d56; 
- flex-direction: column;
- justify-content: space-around;
- height: 500px;
- align-items: flex-start;
- border-bottom-right-radius: 20px 20px;
- 
+background-color: #242d56; 
+flex-direction: column;
+justify-content: space-around;
+height: 500px;
+align-items: flex-start;
+border-bottom-right-radius: 20px 20px;
+
 
 }
 

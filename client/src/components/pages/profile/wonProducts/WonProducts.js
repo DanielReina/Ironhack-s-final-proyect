@@ -43,7 +43,7 @@ class Wonproducts extends Component {
           
         return (
           <Container>
-          <h1>Listado de productos</h1>
+          <h1>Mis adquisiciones</h1>
               <Row>           
                   {this.state.myWonProducts.map(elm => <MyProductCard fetch={this.fetchProducts} key={elm._id} history={this.props.history}  {...elm}/>)}           
               </Row>

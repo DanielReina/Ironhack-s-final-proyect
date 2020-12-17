@@ -1,10 +1,29 @@
 .start-page{
-    border: solid 1px;
+    border-top: solid 1px;
+    border-radius: 10px 10px;
     display:flex;
     justify-content: center;
     align-items: center;
     font-family: 'Crimson Pro', serif;
     flex-direction: column;
-    color: #242d56;
+    color:#d7b373;
+    margin-bottom: 20px;
+    background-color:#242d56;
+}
 
+.start-page button{
+    background-color:#242d56;
+border: none;
+color:#d7b373;
+
+}
+
+.start-page a{
+    color:#d7b373;
+}
+
+.start-page p{
+    color:white;
+    font-size:18px;
+    padding-left: 20px;
 }
