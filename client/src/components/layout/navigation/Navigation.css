@@ -6,7 +6,7 @@ justify-content: space-around;
 height: 500px;
 align-items: flex-start;
 border-bottom-right-radius: 20px 20px;
-
+box-shadow: 10px 5px 5px #d7b373;
 
 }
 
