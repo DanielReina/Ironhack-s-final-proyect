@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ProductService from '../../../../service/products.service'
 import FilesService from './../../../../service/upload.service'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import './ProductForm.css'
 
 class ProductForm extends Component {
 
@@ -62,20 +63,24 @@ class ProductForm extends Component {
    
         return (
             <>
-                <h1>Nuevo producto</h1>
-                <hr/>
-
+               
+                <Container>
+                <Row>
+                 <Col md={{ span: 6, offset: 3 }}>
+                 <h1 className='pF-h1'>Vender mi producto</h1>
+   
+                 <div className='pForm'>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="title">
-                        <Form.Label>Nombre</Form.Label>
+                        <Form.Label><p>Nombre</p></Form.Label>
                         <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
                     </Form.Group>
                     <Form.Group controlId="description">
-                        <Form.Label>Descripción</Form.Label>
-                        <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
+                        <Form.Label><p>Descripción</p></Form.Label>
+                        <Form.Control as="textarea" rows={3} type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
                     </Form.Group>
                     <Form.Group controlId="category">
-                        <Form.Label>Categoría</Form.Label>
+                        <Form.Label><p>Categoría</p></Form.Label>
                         <Form.Control name="category" as="select" value={this.state.category} onChange={this.handleInputChange}>
                         <option></option>
                         <option>Otros</option>
@@ -85,7 +90,7 @@ class ProductForm extends Component {
                         </Form.Control>
                     </Form.Group>
                     <Form.Group controlId="salesMethod">
-                        <Form.Label>Método de venta</Form.Label>
+                        <Form.Label><p>Método de venta</p></Form.Label>
                         <Form.Control name="salesMethod" as="select" value={this.state.salesMethod} onChange={this.handleInputChange}>
                         <option></option>
                         <option>Venta directa</option>
@@ -96,23 +101,23 @@ class ProductForm extends Component {
                     {this.state.salesMethod==='Subasta' ?
                     <>
                     <Form.Group controlId="timeLimit">
-                        <Form.Label>Fecha límite de puja</Form.Label>
+                        <Form.Label><p>Fecha límite de puja</p></Form.Label>
                         <Form.Control type="datetime-local" name="timeLimit" value={this.state.timeLimit} onChange={this.handleInputChange} />
                     </Form.Group>
 
                     <Form.Group controlId="initialPrice">
-                        <Form.Label>Precio de salida</Form.Label>
+                        <Form.Label><p>Precio de salida</p></Form.Label>
                         <Form.Control type="number" name="initialPrice" value={this.state.initialPrice} onChange={this.handleInputChange} />
                     </Form.Group>
                     </>
                     :
                     <Form.Group controlId="initialPrice">
-                        <Form.Label>Precio</Form.Label>
+                        <Form.Label><p>Precio</p></Form.Label>
                         <Form.Control type="number" name="initialPrice" value={this.state.initialPrice} onChange={this.handleInputChange} />
                     </Form.Group>
                     }
                     <Form.Group>
-                        <Form.Label>Imagen (file)</Form.Label>
+                        <Form.Label><p>Imagen (file)</p></Form.Label>
                         <Form.Control type="file" onChange={this.handleImageUpload} />
                     </Form.Group>
                     {/* <Form.Group controlId="detailsImages">
@@ -120,7 +125,11 @@ class ProductForm extends Component {
                         <Form.Control type="text" name="detailsImages" value={this.state.detailsImages} onChange={this.handleInputChange} />
                     </Form.Group> */}
                     <Button variant="dark" type="submit" to='/inicio' >Crear producto</Button>
-                </Form>
+                    </Form>
+                    </div>
+                    </Col>             
+                    </Row>
+                </Container>
             </>
         )
     }

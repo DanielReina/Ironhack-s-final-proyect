@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProductService from '../../../../service/products.service'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Row, Col, Container  } from 'react-bootstrap'
+import './EditMyProduct.css'
 
 class EditMyProduct extends Component {
 
@@ -73,20 +74,23 @@ class EditMyProduct extends Component {
 
         return (
             <>
-                <h1>Edita el producto</h1>
-                <hr/>
-                   
+             <Container>
+                <Row>
+                 <Col md={{ span: 6, offset: 3 }}>
+                <h1 className='eMP-h1'>Edita el producto</h1>
+              
+                <div className='eMProduct'>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="title">
-                        <Form.Label>Nombre</Form.Label>
+                        <Form.Label><p>Nombre</p></Form.Label>
                         <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
                     </Form.Group>
                     <Form.Group controlId="description">
-                        <Form.Label>Descripción</Form.Label>
-                        <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
+                        <Form.Label><p>Descripción</p></Form.Label>
+                        <Form.Control as="textarea" rows={3} type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
                     </Form.Group>
                     <Form.Group controlId="category">
-                        <Form.Label>Categoría</Form.Label>
+                        <Form.Label><p>Categoría</p></Form.Label>
                         <Form.Control name="category" as="select" value={this.state.category} onChange={this.handleInputChange}>
                         <option>Otros</option>
                         <option>Joyas</option>
@@ -95,7 +99,7 @@ class EditMyProduct extends Component {
                         </Form.Control>
                     </Form.Group>
                     <Form.Group controlId="salesMethod">
-                        <Form.Label>Método de venta</Form.Label>
+                        <Form.Label><p>Método de venta</p></Form.Label>
                         <Form.Control name="salesMethod" as="select" value={this.state.salesMethod} onChange={this.handleInputChange}>
                         <option>Venta directa</option>
                         <option>Subasta</option>Crear producto
@@ -104,16 +108,16 @@ class EditMyProduct extends Component {
                     </Form.Group>
 
                     <Form.Group controlId="timeLimit">
-                        <Form.Label>Fecha límite de puja </Form.Label>
+                        <Form.Label><p>Fecha límite de puja</p> </Form.Label>
                         <Form.Control type="datetime-local" name="timeLimit" value={this.state.timeLimit} onChange={this.handleInputChange} />
                     </Form.Group>
 
                     <Form.Group controlId="initialPrice">
-                        <Form.Label>Precio inicial</Form.Label>
+                        <Form.Label><p>Precio inicial</p></Form.Label>
                         <Form.Control type="number" name="initialPrice" value={this.state.initialPrice} onChange={this.handleInputChange} />
                     </Form.Group>
                     <Form.Group controlId="mainImage">
-                        <Form.Label>Imagen principal</Form.Label>
+                        <Form.Label><p>Imagen principal</p></Form.Label>
                         <Form.Control type="text" name="mainImage" value={this.state.mainImage} onChange={this.handleInputChange} />
                     </Form.Group>
                     {/* <Form.Group controlId="detailsImages">
@@ -123,6 +127,10 @@ class EditMyProduct extends Component {
                     <Button variant="dark" type="submit"  >Guardar edición </Button>
      
                 </Form>
+                </div>
+                    </Col>             
+                    </Row>
+                </Container>
             </>
         )
     }

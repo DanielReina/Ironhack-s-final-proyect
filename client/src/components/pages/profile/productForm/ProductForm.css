@@ -1,0 +1,30 @@
+.pForm{
+    margin-top: 10px;
+    font-family: 'Crimson Pro', serif;
+    border: solid 1px;
+    padding:20px;
+    color:#d7b373; 
+    background-color:#242d56;  
+    border-radius: 10px 10px;
+    margin-bottom: 50px;
+}
+
+.pForm button{
+    background-color:#d7b373; 
+    color:#242d56;  
+    border-radius: 10px 10px;
+    border: 5px
+}
+
+.pForm p{
+   
+    color:white;
+    font-size: 20px;
+}
+.pF-h1{
+    display: flex;
+    justify-content: center;
+    font-family: 'Crimson Pro', serif;
+    color:#242d56; 
+    font-size: 60px;
+}
