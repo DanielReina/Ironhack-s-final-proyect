@@ -1,0 +1,13 @@
+.wPCard img{
+    height: 140px;
+    object-fit: cover;
+
+}
+
+.wPCard {
+  border: solid 2px;
+  border-radius: 20px 20px;
+  border-color:#242d56;
+  margin-bottom: 50px;
+
+}

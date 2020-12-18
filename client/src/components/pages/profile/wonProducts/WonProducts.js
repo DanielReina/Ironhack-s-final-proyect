@@ -1,7 +1,8 @@
 import { Container, Row} from 'react-bootstrap'
 import ProductService from '../../../../service/products.service'
 import React, { Component } from 'react'
-import MyProductCard from '../myproducts/MyProductCard'
+import WonProductCard from './WonProductCard'
+import './wonProducts.css'
 
 
 
@@ -43,9 +44,9 @@ class Wonproducts extends Component {
           
         return (
           <Container>
-          <h1>Mis adquisiciones</h1>
+          <h1 className='mAdq-h1' >Mis adquisiciones</h1>
               <Row>           
-                  {this.state.myWonProducts.map(elm => <MyProductCard fetch={this.fetchProducts} key={elm._id} history={this.props.history}  {...elm}/>)}           
+                  {this.state.myWonProducts.map(elm => <WonProductCard fetch={this.fetchProducts} key={elm._id} history={this.props.history}  {...elm}/>)}           
               </Row>
       </Container>
         )

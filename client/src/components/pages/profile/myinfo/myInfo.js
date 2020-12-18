@@ -1,20 +1,28 @@
-import { Col} from 'react-bootstrap'
+import { Col, Row, Container} from 'react-bootstrap'
+import './myInfo.css'
 
 
 
 const Myinfo = (props) => {
 
     return (
-        <Col lg={4}>
-        <h1>Información personal</h1>
+        <>
+        {props.loggedUser &&
+        <Container>
+        <Row>
+        <Col lg={10}>
+        <div className='pInformation' >
+        <h1>INFORMACIÓN PERSONAL</h1>
         <hr/>
-        <p>Nombre: {props.loggedUser.name}</p>
-        <p>Apellidos: {props.loggedUser.lastName}</p>
-        <p>Nombre de usuario: {props.loggedUser.username}</p>
-        <p>Correo electrónico: {props.loggedUser.email}</p>
-
-            
+        <p>Nombre:<span> {props.loggedUser.name}</span></p>
+        <p>Apellidos:<span> {props.loggedUser.lastName}</span></p>
+        <p>Nombre de usuario:<span> {props.loggedUser.username}</span></p>
+        <p>Correo electrónico:<span> {props.loggedUser.email}</span></p>
+        </div>           
         </Col>
+        </Row>
+        </Container>}
+        </>
     )
 }
 
