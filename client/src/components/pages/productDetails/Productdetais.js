@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import ProductService from './../../../service/products.service'
 import Details from './Details'
+import './ProductDetails.css'
 
 class ProductDetails extends Component {
 

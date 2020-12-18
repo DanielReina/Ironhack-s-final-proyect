@@ -1,0 +1,39 @@
+.img-details img{
+    width: 500px;
+    border-radius: 20px 20px;
+}
+
+.img-details {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.expDetails{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.expDetails h1{
+    font-family: 'Crimson Pro', serif;
+    display:flex;
+    justify-content: center;
+    color:#242d56;
+    margin-bottom:  30px;
+    font-size: 60px;
+    margin-top: 50px;
+}
+
+.expDetails button{
+    background-color:#d7b373; 
+    color:#242d56;  
+    border-radius: 10px 10px;
+    border: 5px
+}
+
+
+.expDetails  span{
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    color:#242d56; 
+
+
+}

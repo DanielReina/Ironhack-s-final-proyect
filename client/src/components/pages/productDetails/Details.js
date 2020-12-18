@@ -2,6 +2,7 @@ import { Col, Container, Row, Button, Form } from 'react-bootstrap'
 import React, { Component } from 'react'
 import ProductService from '../../../service/products.service'
 import UserService from '../../../service/User.service'
+import './Details.css'
 
 
 class Details extends Component { 
@@ -132,24 +133,27 @@ class Details extends Component {
 
  
     render() { 
-        console.log('locoo', this.state.message)     
+         
     return (
     <Container>
      {this.state.product && 
     <Row>
-        <Col lg={6}>    
-            <img src={this.state.product.mainImage} alt={`Imágen de ${this.state.product.title}`} ></img>           
+        <Col lg={6}>  
+            <div className='img-details'>
+            <img src={this.state.product.mainImage} alt={`Imágen de ${this.state.product.title}`} ></img> 
+            </div>          
         </Col>
         <Col lg={6}>
+        <div className='expDetails'>
             <div>  
             <h1>{this.state.product.title}</h1> 
             <p>{this.state.product.description}</p>   
             </div>
             <hr></hr>
             <div>
-                <p>Tipo de venta: {this.state.product.salesMethod}</p>
-                <p>Categoría: {this.state.product.category}</p>
-                <p>ID: {this.state.product._id}</p>
+                <p><span>Tipo de venta:</span> {this.state.product.salesMethod}</p>
+                <p><span>Categoría:</span> {this.state.product.category}</p>
+                <p><span>ID:</span> {this.state.product._id}</p>
             </div> 
             <hr></hr> 
             {this.state.User
@@ -158,15 +162,15 @@ class Details extends Component {
             {this.state.product.salesMethod==='Subasta' ?
             <>
           
-                <p>Finaliza en: {this.state.date}</p>
+                <p><span>Finaliza en:</span> {this.state.date}</p>
 
                 {this.state.date===`Fuera de subasta, alcanzada la fecha límite.` ?
                 <>{this.state.product.currentBidder===undefined ? <p>Nadie adquirió el producto de precio inicial {this.state.product.initialPrice} €</p>: 
             <p>{this.state.CurrentBidder.username} adquirió el producto por un precio de {this.state.product.currentBid} € </p>}</>
                     :
                     <>
-                <p>Precio de salida: {this.state.product.initialPrice} €</p>
-                <p>Puja actual: {this.state.product.currentBid}</p>
+                <p><span>Precio de salida:</span> {this.state.product.initialPrice} €</p>
+                <p><span>Puja actual:</span> {this.state.product.currentBid}</p>
               
        
             <hr></hr> 
@@ -176,7 +180,7 @@ class Details extends Component {
                     <Form.Label>Haga su puja</Form.Label>
                     <Form.Control type="number" name="currentBid" value={this.state.currentBid} onChange={this.handleInputChange} />
                 </Form.Group>
-                <Button variant="dark" type="submit">Pujar </Button>
+                <button type="submit">Pujar </button>
             </Form>
             <hr></hr> 
             {this.state.message.lenght!==0 && <p>{this.state.message} </p>}
@@ -188,9 +192,9 @@ class Details extends Component {
             <p>Producto vendido</p> 
             :
             <>
-            <p>Precio: {this.state.product.initialPrice} €</p> 
+            <p><span>Precio:</span> {this.state.product.initialPrice} €</p> 
             <Form onSubmit={this.handleSubmit2}>
-            <Button variant="dark" type="submit" >Comprar </Button>
+            <button type="submit" >Comprar </button>
             </Form>
             </>
             }
@@ -198,6 +202,7 @@ class Details extends Component {
             }</>
             :
             <p>Inicia sesión para más información</p>}
+            </div>
         </Col>
     </Row>
     }   

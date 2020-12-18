@@ -2,6 +2,7 @@ import { Container, Row} from 'react-bootstrap'
 import ProductService from './../../../service/products.service'
 import React, { Component } from 'react'
 import ProductCard from './../productsList/ProductCard'
+import './directSale.css'
 
 
 
@@ -34,7 +35,7 @@ componentDidMount(){
 
     return (
       <Container>
-      <h1>Venta Directa</h1>
+      <h1 className='vD-h1' >Todos los productos en Venta Directa</h1>
           <Row>           
               {this.state.salesProducts.map(elm => <ProductCard key={elm._id} {...elm} loggedUser={this.props.loggedUser}/>)}           
           </Row>

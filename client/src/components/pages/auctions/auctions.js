@@ -2,6 +2,7 @@ import { Container, Row} from 'react-bootstrap'
 import ProductService from './../../../service/products.service'
 import React, { Component } from 'react'
 import ProductCard from './../productsList/ProductCard'
+import './auctions.css'
 
 
 
@@ -34,7 +35,7 @@ componentDidMount(){
      
     return (
       <Container>
-      <h1>Subastas</h1>
+      <h1 className='a-h1' >Todos nuestros productos en Subastas</h1>
           <Row>           
               {this.state.autcionsProducts.map(elm => <ProductCard key={elm._id} {...elm} loggedUser={this.props.loggedUser} />)}           
           </Row>

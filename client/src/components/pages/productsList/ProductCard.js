@@ -1,6 +1,8 @@
 import { Col, Card, ListGroupItem, ListGroup, ButtonGroup } from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import './ProductCard.css'
+
 class ProductCard extends Component { 
     constructor() {
         super()
@@ -90,9 +92,7 @@ class ProductCard extends Component {
                 <Card.Img variant="top" src={this.props.mainImage} />
                 <Card.Body>
                     <Card.Title>{this.props.title}</Card.Title>
-                    <Card.Text>
-                    {this.props.description}
-                    </Card.Text>
+                 
                 </Card.Body>
                     <ListGroup className="list-group-flush">  
                     {this.props.salesMethod === 'Subasta' 

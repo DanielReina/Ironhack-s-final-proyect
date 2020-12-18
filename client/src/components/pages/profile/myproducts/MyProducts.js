@@ -2,6 +2,7 @@ import { Container, Row} from 'react-bootstrap'
 import ProductService from './../../../../service/products.service'
 import React, { Component } from 'react'
 import MyProductCard from './MyProductCard'
+import './MyProducts.css'
 
 class MyProducts extends Component {    
      
@@ -39,7 +40,7 @@ componentDidUpdate(prevProps) {
     render(){
     return (
       <Container>
-      <h1>Listado de productos</h1>
+      <h1 className='lDP-h1' >Mis productos en venta</h1>
           <Row>           
               {this.state.myProducts.map(elm => <MyProductCard fetch={this.fetchProducts} key={elm._id} history={this.props.history}  {...elm}/>)}           
           </Row>

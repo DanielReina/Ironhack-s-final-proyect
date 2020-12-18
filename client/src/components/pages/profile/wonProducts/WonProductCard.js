@@ -1,4 +1,4 @@
-import { Col, Card, ListGroupItem, ListGroup, Button, Row } from 'react-bootstrap'
+import { Col, Card, ListGroupItem, ListGroup, ButtonGroup} from 'react-bootstrap'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ProductService from '../../../../service/products.service'
@@ -120,6 +120,9 @@ class WonProductCard extends Component {
                                     <p>{this.props.initialPrice} €</p> :  <p>{this.props.currentBid} €</p>}</ListGroupItem>
 
                                     </>
+                                    <ButtonGroup aria-label="Basic example" style={{ width: '100%' }}>
+                                    <Link to={`/detalles-de-producto/${this.props._id}`} className="btn btn-sm btn-dark">Ver detalles</Link>                             
+                                    </ButtonGroup> 
                             </ListGroup>
                         </Card>
                         </div>
